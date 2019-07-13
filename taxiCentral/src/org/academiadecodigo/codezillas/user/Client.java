@@ -26,9 +26,6 @@ public class Client {
         if (wallet <10){
             //TODO REFUSE TRIP LOGIC
         }
-        if ()
-
-
 
     }
 
