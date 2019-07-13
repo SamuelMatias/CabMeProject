@@ -51,7 +51,7 @@ public class Manager {
                 printStream.println("############# YOU HAVE REACHED YOUR DESTINATION #############");
                 drivers[currentDriver].setLocation(client.getDestination());
                 drivers[currentDriver].setAvailability(true);
-                client.cabFare(getCost(1));
+                client.cabFare(getCost(1,client));
                 // TODO: 2019-07-13 magic numbers passengers; 
             } catch (InterruptedException e) {
                 e.printStackTrace();
@@ -66,7 +66,7 @@ public class Manager {
         System.out.println("\n");
     }
 
-    public static double getCost(int passengers) {
+    public static double getCost(int passengers, Client client) {
         return CostCalculator.calculateCost(passengers, client.getLocation(), client.getDestination());
     }
 
