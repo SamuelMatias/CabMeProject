@@ -13,8 +13,6 @@ public class Client {
     private String location;
     private String destination;
 
-
-
     public Client(int id, String name, String location,String destination ){
         this.id = id;
         this.name = name;
@@ -26,22 +24,18 @@ public class Client {
         if (wallet <10){
             //TODO REFUSE TRIP LOGIC
         }
-
     }
 
     public void deposit (double cash){
         wallet += cash;
-
     }
 
     public double getWallet(){
         return wallet;
-
     }
 
     public void cabFare(double cash){
         wallet -= cash;
-
     }
 
 }

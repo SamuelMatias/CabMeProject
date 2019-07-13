@@ -9,23 +9,29 @@ package org.academiadecodigo.codezillas.menu;
 import org.academiadecodigo.bootcamp.Prompt;
 import org.academiadecodigo.bootcamp.scanners.menu.MenuInputScanner;
 
+import java.io.InputStream;
+import java.io.PrintStream;
 
 public class MenuPrompts {
 
-    Prompt prompt = new Prompt(System.in, System.out);
+    InputStream inputStream;
+    PrintStream printStream;
+    Prompt prompt;
 
+    public MenuPrompts(InputStream inputStream, PrintStream printStream){
+        this.inputStream = inputStream;
+        this.printStream = printStream;
+        prompt = new Prompt(inputStream, printStream);
+    }
 
     public int login() {
 
         System.out.println("WELCOME TO CENTRAL CRAZY TAXI");
         String[] options = {"Login", "Exit"};
         MenuInputScanner scanner = new MenuInputScanner(options);
-
-
         scanner.setMessage("Choose an option");
-        int answerIndex = prompt.getUserInput(scanner);
 
-        return answerIndex;
+        return prompt.getUserInput(scanner);
 
     }
 
@@ -36,10 +42,7 @@ public class MenuPrompts {
         MenuInputScanner scanner = new MenuInputScanner(options);
         scanner.setMessage("Choose an option");
 
-        int answerIndex = prompt.getUserInput(scanner);
-
-        return answerIndex;
-
+        return prompt.getUserInput(scanner);
     }
 
 
