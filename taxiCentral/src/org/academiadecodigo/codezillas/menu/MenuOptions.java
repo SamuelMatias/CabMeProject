@@ -1,6 +1,7 @@
 package org.academiadecodigo.codezillas.menu;
 
-import org.academiadecodigo.codezillas.tcpServer.ClientHandler;
+import org.academiadecodigo.codezillas.tripManager.Location;
+import org.academiadecodigo.codezillas.tripManager.Manager;
 import org.academiadecodigo.codezillas.user.Client;
 
 import java.io.InputStream;
@@ -12,7 +13,6 @@ public class MenuOptions {
     PrintStream printStream;
     InputStream inputStream;
     MenuPrompts menuPrompts;
-    ClientHandler clientHandler;
 
     public MenuOptions(int clientMenuInput, Client client, PrintStream printStream, InputStream inputStream) {
         this.clientMenuInput = clientMenuInput;
@@ -26,6 +26,7 @@ public class MenuOptions {
 
         switch (clientMenuInput) {
             case 1:
+                Manager.showDrivers();
                 askDriver();
                 break;
             case 2:
@@ -37,14 +38,13 @@ public class MenuOptions {
             case 4:
                 logout();
                 break;
-
         }
-
-
     }
 
     public void askDriver(){
-
+        client.setLocation(menuPrompts.askLocation("current location"));
+        client.setDestination(menuPrompts.askLocation("destination"));
+        Manager.assignDriver(client,printStream);
     }
 
     public void getWallet(){

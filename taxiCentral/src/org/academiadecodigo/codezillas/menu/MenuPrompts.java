@@ -7,13 +7,12 @@ package org.academiadecodigo.codezillas.menu;
 //Symbolic "login" menu and "Request taxi" menus
 
 import org.academiadecodigo.bootcamp.Prompt;
-import org.academiadecodigo.bootcamp.scanners.integer.IntegerInputScanner;
 import org.academiadecodigo.bootcamp.scanners.menu.MenuInputScanner;
 import org.academiadecodigo.bootcamp.scanners.precisiondouble.DoubleInputScanner;
-
+import org.academiadecodigo.codezillas.tripManager.Location;
 import java.io.InputStream;
 import java.io.PrintStream;
-import java.util.Scanner;
+
 
 public class MenuPrompts {
 
@@ -60,10 +59,13 @@ public class MenuPrompts {
 
     }
 
-    public void callDriver () {
+    public Location askLocation(String option){
+
         printStream.println(" ");
         printStream.println(MenuAssets.LINE);
-
+        MenuInputScanner scanner = new MenuInputScanner(MenuAssets.LOCATIONS);
+        scanner.setMessage("Choose your " + option);
+        return Location.values()[prompt.getUserInput(scanner)-1];
 
     }
 

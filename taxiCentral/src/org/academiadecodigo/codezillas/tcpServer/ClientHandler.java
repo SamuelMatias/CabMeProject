@@ -1,7 +1,6 @@
 package org.academiadecodigo.codezillas.tcpServer;
 
 import org.academiadecodigo.codezillas.menu.MenuLogic;
-import org.academiadecodigo.codezillas.menu.MenuPrompts;
 
 import java.io.*;
 import java.net.Socket;

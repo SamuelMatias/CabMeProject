@@ -1,5 +1,8 @@
 package org.academiadecodigo.codezillas.tcpServer;
 
+import org.academiadecodigo.codezillas.menu.MenuAssets;
+import org.academiadecodigo.codezillas.tripManager.Manager;
+
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -17,9 +20,12 @@ public class Server {
 
     private ExecutorService executor;
 
+
+
     public Server(int port){
         this.port = port;
         executor = Executors.newCachedThreadPool();
+        new Manager(5);
     }
 
     public void initialize(){
