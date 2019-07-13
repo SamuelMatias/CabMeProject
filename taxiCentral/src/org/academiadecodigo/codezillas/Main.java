@@ -5,8 +5,12 @@ package org.academiadecodigo.codezillas;
 
     //TODO: IMPORTANT: Try to implement Design Patterns and interface-based programming and code conventions
 
+import org.academiadecodigo.codezillas.ConsoleColors.Colors;
+
 public class Main {
+    Colors color;
     public static void main(String[] args) {
         System.out.println("Boas");
+        System.out.println(Colors.ANSI_RED + "This text is red" + Colors.ANSI_RESET);
     }
 }
