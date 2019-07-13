@@ -3,6 +3,7 @@ package org.academiadecodigo.codezillas.user;
     //TODO: Implement user properties and methods
     //FixMe: I suggest using the word "Location" instead of origin to improve readability
 
+import org.academiadecodigo.codezillas.tripManager.Location;
 import org.academiadecodigo.codezillas.tripManager.Manager;
 
 public class Client {
@@ -10,10 +11,12 @@ public class Client {
     private int id;
     private double wallet = 100.00;
     private String name;
-    private String location;
-    private String destination;
+    private Location location;
+    private Location destination;
 
-    public Client(int id, String name, String location,String destination ){
+
+
+    public Client(int id, String name, Location location, Location destination ){
         this.id = id;
         this.name = name;
         this.location = location;
@@ -26,8 +29,9 @@ public class Client {
         }
     }
 
-    public void deposit (double cash){
+    public void deposit(double cash){
         wallet += cash;
+
     }
 
     public double getWallet(){
@@ -36,6 +40,14 @@ public class Client {
 
     public void cabFare(double cash){
         wallet -= cash;
+    }
+
+    public Location getLocation(){
+        return location;
+    }
+
+    public Location getDestination(){
+        return destination;
     }
 
 }

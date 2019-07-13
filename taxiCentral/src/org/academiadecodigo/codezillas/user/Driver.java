@@ -2,36 +2,43 @@ package org.academiadecodigo.codezillas.user;
 
     //TODO: Taxi implementation will be hardcoded at first but it can still be thought of as a "fake user" of the app
 
+import org.academiadecodigo.codezillas.tripManager.Location;
+
 public class Driver {
 
     private int id;
-    private String location;
-    private String destination;
-    private boolean isAvailable = true;
+    private Location location;
+    private Location destination;
+    private boolean availability = true;
 
-    public Driver(int id){
-        this.id = id;
+    public Driver(Location location){
+        this.location = location;
+        //this.id = id;
     }
 
-    public void setLocation(String location){
+    public void setLocation(Location location){
         this.location = location;
     }
 
-    public String getLocation(){
+    public Location getLocation(){
         return location;
     }
 
-    public void setDestination(String destination){
-        isAvailable = false;
+    public void setDestination(Location destination){
+        availability = false;
         this.destination = destination;
     }
 
-    public String getDestination(){
+    public Location getDestination(){
         return destination;
     }
 
-    public boolean getAvailability(){
-        return isAvailable;
+    public boolean isAvailable(){
+        return availability;
+    }
+
+    public void setAvailability(){
+        availability = false;
     }
 
 
