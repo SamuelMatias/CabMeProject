@@ -27,8 +27,8 @@ public class Manager {
         return client;
     }
 
-    public double getCost() {
-        return cost;
+    public double getCost(int passengers) {
+        return CostCalculator.calculateCost(passengers, client.getLocation(), client.getDestination());
     }
 
     public void addDriver() {
@@ -39,12 +39,11 @@ public class Manager {
 
     public void assignDriver() {
 
-        String clientLocation = client.getLocation();
         boolean driverAssigned = false;
 
         for (int i = 0; i < drivers.length; i++) {
 
-            if (clientLocation.equals(drivers[i].getLocation())) {
+            if (client.getLocation() == drivers[i].getLocation()) {
 
                 drivers[i].setDestination(client.getDestination());
                 drivers[i].setAvailability();

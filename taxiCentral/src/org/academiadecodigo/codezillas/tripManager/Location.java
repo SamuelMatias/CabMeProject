@@ -23,4 +23,5 @@ public enum Location {
     public int getY(){
         return y;
     }
+
 }
