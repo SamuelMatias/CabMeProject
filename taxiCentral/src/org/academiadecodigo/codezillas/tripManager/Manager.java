@@ -17,9 +17,8 @@ public class Manager {
     private PrintWriter out;
     private BufferedReader in;
 
-    public void Manager(Client client, Driver[] driver) {
+    public void Manager(Client client) {
         this.client = client;
-        this.driver = driver;
     }
 
     public Client getClient() {
