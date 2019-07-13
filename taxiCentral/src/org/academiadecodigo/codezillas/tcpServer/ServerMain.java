@@ -11,7 +11,6 @@ public class ServerMain {
 
         while(true){
             server.listen();
-            server.setupStreams();
         }
 
     }

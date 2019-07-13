@@ -18,7 +18,7 @@ public class Manager {
     private PrintWriter out;
     private BufferedReader in;
 
-    public void Manager(Client client, int taxiAmount) {
+    public Manager(Client client, int taxiAmount) {
         this.client = client;
         this.drivers = new Driver[taxiAmount];
     }

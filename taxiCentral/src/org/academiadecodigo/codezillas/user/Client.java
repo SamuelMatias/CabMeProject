@@ -16,7 +16,7 @@ public class Client {
 
 
 
-    public Client(int id, String name, Location location,Location destination){
+    public Client(int id, String name, Location location, Location destination ){
         this.id = id;
         this.name = name;
         this.location = location;
@@ -36,12 +36,10 @@ public class Client {
 
     public double getWallet(){
         return wallet;
-
     }
 
     public void cabFare(double cash){
         wallet -= cash;
-
     }
 
     public Location getLocation(){
