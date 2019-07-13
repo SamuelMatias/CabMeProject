@@ -37,8 +37,8 @@ public class Driver {
         return availability;
     }
 
-    public void setAvailability(){
-        availability = false;
+    public void setAvailability(boolean set){
+        availability = set;
     }
 
 

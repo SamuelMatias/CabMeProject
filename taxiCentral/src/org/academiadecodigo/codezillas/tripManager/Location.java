@@ -24,4 +24,8 @@ public enum Location {
         return y;
     }
 
+    @Override
+    public String toString() {
+        return super.toString();
+    }
 }

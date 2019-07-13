@@ -26,6 +26,7 @@ public class MenuOptions {
 
         switch (clientMenuInput) {
             case 1:
+                Manager.showDrivers();
                 askDriver();
                 break;
             case 2:
@@ -43,7 +44,7 @@ public class MenuOptions {
     public void askDriver(){
         client.setLocation(menuPrompts.askLocation("current location"));
         client.setDestination(menuPrompts.askLocation("destination"));
-        Manager.assignDriver(client);
+        Manager.assignDriver(client,printStream);
     }
 
     public void getWallet(){

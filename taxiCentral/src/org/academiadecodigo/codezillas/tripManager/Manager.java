@@ -9,6 +9,7 @@ import org.academiadecodigo.codezillas.user.Driver;
 import org.academiadecodigo.codezillas.user.DriverFactory;
 
 import java.io.BufferedReader;
+import java.io.PrintStream;
 import java.io.PrintWriter;
 
 public class Manager {
@@ -19,39 +20,62 @@ public class Manager {
     private Client client;
 
     public Manager(int taxiAmount) {
-        this.drivers = new Driver[taxiAmount];
+        drivers = addDriver(taxiAmount);
+
     }
 
-    public double getCost(int passengers) {
+    public static synchronized void assignDriver(Client client, PrintStream printStream) {
+
+        boolean driverAssigned = false;
+        int currentDriver = 0;
+        for (int i = 0; i < drivers.length; i++) {
+
+            if (client.getLocation().getX() == drivers[i].getLocation().getX()
+                    && client.getLocation().getY() == drivers[i].getLocation().getY()) {
+                if (drivers[i].isAvailable()) {
+                    drivers[i].setAvailability(false);
+                    driverAssigned = true;
+                    currentDriver = i;
+                    break;
+                }
+            }
+        }
+
+        if (!driverAssigned) {
+            printStream.println("############# NO DRIVER AVAILABLE #############");
+
+        } else {
+            printStream.println("############# DRIVER ON ITS WAY #############");
+            try {
+                Thread.sleep(3000);
+                printStream.println("############# YOU HAVE REACHED YOUR DESTINATION #############");
+                drivers[currentDriver].setLocation(client.getDestination());
+                drivers[currentDriver].setAvailability(true);
+                client.cabFare(getCost(1));
+                // TODO: 2019-07-13 magic numbers passengers; 
+            } catch (InterruptedException e) {
+                e.printStackTrace();
+            }
+        }
+    }
+
+    public static void showDrivers() {
+        for (Driver driver : drivers) {
+            System.out.println(driver.isAvailable() + " " + driver.getLocation());
+        }
+        System.out.println("\n");
+    }
+
+    public static double getCost(int passengers) {
         return CostCalculator.calculateCost(passengers, client.getLocation(), client.getDestination());
     }
 
-    public void addDriver() {
+    public Driver[] addDriver(int taxiAmount) {
+        drivers = new Driver[taxiAmount];
         for (int i = 0; i < drivers.length; i++) {
             drivers[i] = DriverFactory.getNewDriver();
         }
-    }
-
-    public static synchronized void assignDriver(Client client) {
-
-        boolean driverAssigned = false;
-
-        for (int i = 0; i < drivers.length; i++) {
-
-            if (client.getLocation() == drivers[i].getLocation()) {
-
-                drivers[i].setDestination(client.getDestination());
-                drivers[i].setAvailability();
-                driverAssigned = true;
-                break;
-            }
-        }
-        if (!driverAssigned) {
-            System.out.println("No driver available");
-
-        } else {
-            System.out.println("Driver on its way");
-        }
+        return drivers;
     }
 
 
