@@ -7,10 +7,13 @@ package org.academiadecodigo.codezillas.menu;
 //Symbolic "login" menu and "Request taxi" menus
 
 import org.academiadecodigo.bootcamp.Prompt;
+import org.academiadecodigo.bootcamp.scanners.integer.IntegerInputScanner;
 import org.academiadecodigo.bootcamp.scanners.menu.MenuInputScanner;
+import org.academiadecodigo.bootcamp.scanners.precisiondouble.DoubleInputScanner;
 
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.util.Scanner;
 
 public class MenuPrompts {
 
@@ -18,31 +21,50 @@ public class MenuPrompts {
     PrintStream printStream;
     Prompt prompt;
 
-    public MenuPrompts(InputStream inputStream, PrintStream printStream){
+    public MenuPrompts(InputStream inputStream, PrintStream printStream) {
         this.inputStream = inputStream;
         this.printStream = printStream;
         prompt = new Prompt(inputStream, printStream);
     }
 
     public int login() {
+        printStream.println(MenuAssets.LINE);
+        printStream.println(MenuAssets.WELCOME);
 
-        System.out.println("WELCOME TO CENTRAL CRAZY TAXI");
-        String[] options = {"Login", "Exit"};
-        MenuInputScanner scanner = new MenuInputScanner(options);
+        MenuInputScanner scanner = new MenuInputScanner(MenuAssets.OPTIONSLOGIN);
         scanner.setMessage("Choose an option");
+        printStream.println(" ");
+        return prompt.getUserInput(scanner);
+
+    }
+
+    public int clientMenu() {
+        printStream.println(" ");
+        printStream.println(MenuAssets.LINE);
+        printStream.println(MenuAssets.PROFILE);
+
+        MenuInputScanner scanner = new MenuInputScanner(MenuAssets.OPTIONSPROFILE);
+        scanner.setMessage("Choose an option");
+        printStream.println(" ");
+        return prompt.getUserInput(scanner);
+    }
+
+    public double amountToDeposit(){
+        printStream.println(" ");
+        printStream.println(MenuAssets.LINE);
+        printStream.println(MenuAssets.AMOUNT);
+
+        DoubleInputScanner scanner = new DoubleInputScanner();
 
         return prompt.getUserInput(scanner);
 
     }
 
-    public int clientMenu(){
-        System.out.println("WELCOME TO YOUR PROFILE");
-        String[] options = {"Ask a Driver", "Check Wallet", "Put some money", "Logout"};
+    public void callDriver () {
+        printStream.println(" ");
+        printStream.println(MenuAssets.LINE);
 
-        MenuInputScanner scanner = new MenuInputScanner(options);
-        scanner.setMessage("Choose an option");
 
-        return prompt.getUserInput(scanner);
     }
 
 

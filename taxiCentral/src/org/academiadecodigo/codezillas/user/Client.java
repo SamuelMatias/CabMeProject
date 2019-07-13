@@ -8,7 +8,7 @@ import org.academiadecodigo.codezillas.tripManager.Manager;
 public class Client {
 
     private int id;
-    private double wallet;
+    private double wallet = 100.00;
     private String name;
     private String location;
     private String destination;
