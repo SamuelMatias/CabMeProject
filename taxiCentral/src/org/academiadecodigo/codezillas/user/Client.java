@@ -50,4 +50,11 @@ public class Client {
         return destination;
     }
 
+    public void setLocation(Location location) {
+        this.location = location;
+    }
+
+    public void setDestination(Location destination) {
+        this.destination = destination;
+    }
 }

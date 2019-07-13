@@ -12,19 +12,14 @@ import java.io.BufferedReader;
 import java.io.PrintWriter;
 
 public class Manager {
-    private Client client;
-    private Driver[] drivers;
+    private static Driver[] drivers;
     private double cost = 8;
     private PrintWriter out;
     private BufferedReader in;
+    private Client client;
 
-    public Manager(Client client, int taxiAmount) {
-        this.client = client;
+    public Manager(int taxiAmount) {
         this.drivers = new Driver[taxiAmount];
-    }
-
-    public Client getClient() {
-        return client;
     }
 
     public double getCost(int passengers) {
@@ -37,7 +32,7 @@ public class Manager {
         }
     }
 
-    public void assignDriver() {
+    public static synchronized void assignDriver(Client client) {
 
         boolean driverAssigned = false;
 

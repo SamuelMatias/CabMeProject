@@ -1,5 +1,7 @@
 package org.academiadecodigo.codezillas.tcpServer;
 
+import org.academiadecodigo.codezillas.tripManager.Manager;
+
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -16,6 +18,8 @@ public class Server {
     private Socket clientSocket;
 
     private ExecutorService executor;
+
+    private Manager manager = new Manager(5);
 
     public Server(int port){
         this.port = port;

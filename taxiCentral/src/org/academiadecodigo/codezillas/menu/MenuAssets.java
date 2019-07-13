@@ -1,5 +1,7 @@
 package org.academiadecodigo.codezillas.menu;
 
+import org.academiadecodigo.codezillas.tripManager.Location;
+
 public class MenuAssets {
 
     static final String WELCOME = "WELCOME TO CENTRAL CRAZY TAXI";
@@ -8,5 +10,5 @@ public class MenuAssets {
     static final String LINE = "----------------------------- ";
     static final String[] OPTIONSPROFILE = {"Ask a Driver", "Check Wallet", "Put some money", "Logout"};
     static final String[] OPTIONSLOGIN = {"Login", "Exit"};
-    static final String[] OPTIONSPROFILE3 = {"Ask a Driver", "Check Wallet", "Put some money", "Logout"};
+    static final String[] LOCATIONS = {"ANGRA", "LAJES", "QUATRO_RIBEIRAS", "RAMINHO", "STA_BARBARA", "S_SEBASTIAO"};
 }
