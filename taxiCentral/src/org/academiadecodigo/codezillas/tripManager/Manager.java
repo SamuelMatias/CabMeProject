@@ -33,7 +33,7 @@ public class Manager {
 
     public void addDriver() {
         for (int i = 0; i < drivers.length; i++) {
-            drivers[i] = DriverFactory.getNewdriver();
+            drivers[i] = DriverFactory.getNewDriver();
         }
     }
 
@@ -58,4 +58,6 @@ public class Manager {
             System.out.println("Driver on its way");
         }
     }
+
+
 }
