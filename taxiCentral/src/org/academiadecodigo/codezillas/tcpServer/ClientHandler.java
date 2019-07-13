@@ -26,9 +26,7 @@ public class ClientHandler implements Runnable{
 
     public void setupStreams(){
         try {
-
             printStream = new PrintStream(clientSocket.getOutputStream(),true);
-
         } catch (IOException e) {
             e.printStackTrace();
         }
