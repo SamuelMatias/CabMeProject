@@ -7,9 +7,9 @@ public class Driver {
     private int id;
     private String location;
     private String destination;
-    private boolean isAvailable = true;
+    private boolean availability = true;
 
-    public Driver(int id){
+    public Driver(int position){
         this.id = id;
     }
 
@@ -22,7 +22,7 @@ public class Driver {
     }
 
     public void setDestination(String destination){
-        isAvailable = false;
+        availability = false;
         this.destination = destination;
     }
 
@@ -30,8 +30,12 @@ public class Driver {
         return destination;
     }
 
-    public boolean getAvailability(){
-        return isAvailable;
+    public boolean isAvailable(){
+        return availability;
+    }
+
+    public void setAvailability(){
+        availability = false;
     }
 
 
