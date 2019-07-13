@@ -1,5 +1,8 @@
 package org.academiadecodigo.codezillas.tcpServer;
 
+import org.academiadecodigo.codezillas.menu.MenuLogic;
+import org.academiadecodigo.codezillas.menu.MenuPrompts;
+
 import java.io.*;
 import java.net.Socket;
 
@@ -8,8 +11,7 @@ import java.net.Socket;
 
 public class ClientHandler implements Runnable{
 
-    BufferedReader reader;
-    PrintWriter writer;
+    PrintStream printStream;
 
     Socket clientSocket;
 
@@ -21,27 +23,27 @@ public class ClientHandler implements Runnable{
         System.out.println("Client handler created");
         setupStreams();
         respond();
-
     }
 
     public void setupStreams(){
         try {
-            reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-            writer = new PrintWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
+
+            printStream = new PrintStream(clientSocket.getOutputStream(),true);
+
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
     public void respond(){
         try{
+
             if(clientSocket.isBound()) {
-                System.out.println("Location");
-                System.out.println(reader.readLine());
-                System.out.println("Destination");
-                System.out.println(reader.readLine());
+                MenuLogic menu = new MenuLogic(clientSocket.getInputStream(),printStream);
+                menu.clientLogin();
+
             }
-        }catch (IOException e) {
-            e.printStackTrace();
+        }catch(Exception ex){
+            ex.printStackTrace();
         }
     }
 

@@ -15,9 +15,6 @@ public class Server {
     private ServerSocket serverSocket;
     private Socket clientSocket;
 
-    private BufferedReader reader;
-    private PrintWriter writer;
-
     private ExecutorService executor;
 
     public Server(int port){
@@ -49,15 +46,5 @@ public class Server {
             e.printStackTrace();
         }
     }
-
-    public void setupStreams(){
-        try {
-            reader = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
-            writer = new PrintWriter(new OutputStreamWriter(clientSocket.getOutputStream()));
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
 
 }
