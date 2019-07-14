@@ -1,5 +1,6 @@
 package org.academiadecodigo.codezillas.menu;
 
+import org.academiadecodigo.codezillas.ConsoleColors.Colors;
 import org.academiadecodigo.codezillas.tripManager.Location;
 import org.academiadecodigo.codezillas.user.Client;
 
@@ -16,6 +17,8 @@ public class MenuLogic {
 
     private Client client;
 
+    public static int counter;
+
     public MenuLogic(InputStream inputStream, PrintStream printStream) {
         this.inputStream = inputStream;
         this.printStream = printStream;
@@ -24,9 +27,15 @@ public class MenuLogic {
     }
 
     public void clientLogin(Socket clientSocket) {
-
+        counter++;
+        int wallet = 25;
         if (menuPrompts.login() == 1) {
-            client = new Client(1,menuPrompts.clientName(), Location.ANGRA,Location.LAJES);
+            if(counter < 4){
+                wallet = 100;
+                printStream.println(Colors.PURPLE + "CONGRATULATION YOU FUCKING NERD YOU WERE THE FIRST THREE TO GET THE PRIZE " + Colors.RESET);
+            }
+
+            client = new Client(counter,menuPrompts.clientName(), Location.ANGRA,Location.LAJES,wallet);
 
             int answer;
             while ((answer = menuPrompts.clientMenu()) > 0 && answer < 5){

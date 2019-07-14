@@ -8,7 +8,7 @@ public class ClientFactory {
 
     public static Client getNewClient(){
         id++;
-        return new Client(id,"Client"+id, Location.ANGRA,Location.STA_BARBARA);
+        return new Client(id,"Client"+id, Location.ANGRA,Location.STA_BARBARA,25);
 
     }
 

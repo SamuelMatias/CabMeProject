@@ -79,7 +79,7 @@ public class MenuPrompts {
         try {
             printStream.println(" ");
             printStream.println(MenuAssets.LINE);
-            printStream.println(MenuAssets.PROFILE + " " + name);
+            printStream.println(MenuAssets.PROFILE + " " + name.toUpperCase());
 
             MenuInputScanner scanner = new MenuInputScanner(MenuAssets.OPTIONSPROFILE);
             scanner.setMessage(Colors.CYAN + "Choose an option" + Colors.RESET);

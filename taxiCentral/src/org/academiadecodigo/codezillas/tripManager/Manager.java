@@ -13,6 +13,9 @@ public class Manager {
         drivers = addDriver(taxiAmount);
     }
 
+    public static Driver[] getDrivers(){
+        return  drivers;
+    }
     public static synchronized void assignDriver(Client client, PrintStream printStream, int passengers) {
         try {
             boolean driverAssigned = false;
