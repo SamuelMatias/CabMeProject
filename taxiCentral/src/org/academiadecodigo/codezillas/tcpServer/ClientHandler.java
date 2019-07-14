@@ -6,13 +6,13 @@ import java.io.*;
 import java.net.Socket;
 
 public class ClientHandler implements Runnable{
-
     PrintStream printStream;
     Socket clientSocket;
 
     public ClientHandler(Socket clientSocket){
         this.clientSocket = clientSocket;
     }
+
     @Override
     public void run() {
         System.out.println("Client handler created");
@@ -27,9 +27,9 @@ public class ClientHandler implements Runnable{
             e.printStackTrace();
         }
     }
+
     public void respond(){
         try{
-
             if(clientSocket.isBound()) {
                 MenuLogic menu = new MenuLogic(clientSocket.getInputStream(),printStream);
                 menu.clientLogin(clientSocket);

@@ -1,23 +1,16 @@
 package org.academiadecodigo.codezillas.tripManager;
 
-//TODO: Implement trip (a.k.a. "Corrida") management logic
-//Could contain a client list as well as a taxi list if there
-// is no need to create separate ClientList class
-
+import org.academiadecodigo.codezillas.ConsoleColors.Colors;
 import org.academiadecodigo.codezillas.user.Client;
 import org.academiadecodigo.codezillas.user.Driver;
 import org.academiadecodigo.codezillas.user.DriverFactory;
-
-import java.io.BufferedReader;
 import java.io.PrintStream;
-import java.io.PrintWriter;
 
 public class Manager {
     private static Driver[] drivers;
 
     public Manager(int taxiAmount) {
         drivers = addDriver(taxiAmount);
-
     }
 
     public static synchronized void assignDriver(Client client, PrintStream printStream, int passengers) {
@@ -38,15 +31,15 @@ public class Manager {
             }
 
             if (!driverAssigned) {
-                printStream.println("############# NO DRIVER AVAILABLE #############");
+                printStream.println(Colors.RED + "############# NO DRIVER AVAILABLE #############" + Colors.RESET);
 
             } else {
-                printStream.println("############# DRIVER ON ITS WAY #############");
+                printStream.println(Colors.GREEN + "############# DRIVER ON ITS WAY #############" + Colors.RESET);
                 try {
                     Thread.sleep(1000);
-                    printStream.println("############# DRIVER ARRIVED #############");
+                    printStream.println(Colors.GREEN + "############# DRIVER ARRIVED #############" + Colors.RESET);
                     Thread.sleep(3000);
-                    printStream.println("############# YOU HAVE REACHED YOUR DESTINATION #############");
+                    printStream.println(Colors.GREEN + "############# YOU HAVE REACHED YOUR DESTINATION #############" + Colors.RESET);
                     drivers[currentDriver].setLocation(client.getDestination());
                     drivers[currentDriver].setAvailability(true);
                     client.cabFare(getCost(passengers, client));

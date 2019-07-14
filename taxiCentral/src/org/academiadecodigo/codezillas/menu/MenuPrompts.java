@@ -11,8 +11,8 @@ import org.academiadecodigo.bootcamp.scanners.integer.IntegerRangeInputScanner;
 import org.academiadecodigo.bootcamp.scanners.menu.MenuInputScanner;
 import org.academiadecodigo.bootcamp.scanners.precisiondouble.DoubleInputScanner;
 import org.academiadecodigo.bootcamp.scanners.string.StringInputScanner;
+import org.academiadecodigo.codezillas.ConsoleColors.Colors;
 import org.academiadecodigo.codezillas.tripManager.Location;
-
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.NoSuchElementException;
@@ -66,7 +66,7 @@ public class MenuPrompts {
         try {
             printStream.println(MenuAssets.LINE);
             IntegerRangeInputScanner inputScanner = new IntegerRangeInputScanner(1, 4);
-            inputScanner.setMessage("Passengers number: ");
+            inputScanner.setMessage(Colors.CYAN + "Passengers number: " + Colors.RESET);
             return prompt.getUserInput(inputScanner);
         } catch (NoSuchElementException e) {
             printStream.close();
@@ -82,7 +82,7 @@ public class MenuPrompts {
             printStream.println(MenuAssets.PROFILE + " " + name);
 
             MenuInputScanner scanner = new MenuInputScanner(MenuAssets.OPTIONSPROFILE);
-            scanner.setMessage("Choose an option");
+            scanner.setMessage(Colors.CYAN + "Choose an option" + Colors.RESET);
             printStream.println(" ");
             return prompt.getUserInput(scanner);
         } catch (NoSuchElementException e) {
@@ -112,7 +112,7 @@ public class MenuPrompts {
             printStream.println(" ");
             printStream.println(MenuAssets.LINE);
             MenuInputScanner scanner = new MenuInputScanner(MenuAssets.LOCATIONS);
-            scanner.setMessage("Choose your " + option);
+            scanner.setMessage(Colors.CYAN + "Choose your " + option + Colors.RESET);
             return Location.values()[prompt.getUserInput(scanner) - 1];
         } catch (NoSuchElementException e) {
             printStream.close();
@@ -121,6 +121,4 @@ public class MenuPrompts {
         return null;
 
     }
-
-
 }

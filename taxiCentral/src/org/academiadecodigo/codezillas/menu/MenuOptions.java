@@ -1,5 +1,7 @@
 package org.academiadecodigo.codezillas.menu;
 
+import org.academiadecodigo.codezillas.ConsoleColors.Colors;
+import org.academiadecodigo.codezillas.tripManager.Location;
 import org.academiadecodigo.codezillas.tripManager.Manager;
 import org.academiadecodigo.codezillas.user.Client;
 import java.io.InputStream;
@@ -50,7 +52,7 @@ public class MenuOptions {
     }
 
     public void getWallet(){
-        printStream.println("You have " + client.getWallet() + " €");
+        printStream.println(Colors.GREEN + "You have " + client.getWallet() + " €" + Colors.GREEN);
     }
 
     public void deposit(){

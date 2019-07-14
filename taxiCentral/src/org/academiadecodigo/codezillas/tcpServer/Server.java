@@ -9,14 +9,10 @@ import java.util.concurrent.Executors;
 
 
 public class Server {
-
     private int port;
     private ServerSocket serverSocket;
     private Socket clientSocket;
-
     private ExecutorService executor;
-
-
 
     public Server(int port){
         this.port = port;
@@ -48,5 +44,4 @@ public class Server {
             e.printStackTrace();
         }
     }
-
 }

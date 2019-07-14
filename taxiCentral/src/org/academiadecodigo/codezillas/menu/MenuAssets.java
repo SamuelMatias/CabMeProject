@@ -1,10 +1,12 @@
 package org.academiadecodigo.codezillas.menu;
 
+import org.academiadecodigo.codezillas.ConsoleColors.Colors;
+
 public class MenuAssets {
 
-    static final String WELCOME = "WELCOME TO CENTRAL CRAZY TAXI";
-    static final String PROFILE = "WELCOME TO YOUR PROFILE";
-    static final String AMOUNT = "HOW MUCH YOU WANT?";
+    static final String WELCOME = Colors.CYAN + "WELCOME TO CENTRAL CRAZY TAXI" + Colors.RESET;
+    static final String PROFILE = Colors.CYAN + "WELCOME TO YOUR PROFILE" + Colors.RESET;
+    static final String AMOUNT = Colors.CYAN + "HOW MUCH YOU WANT?" + Colors.CYAN;
     static final String LINE = "----------------------------- ";
     static final String[] OPTIONSPROFILE = {"Ask a Driver", "Check Wallet", "Put some money", "Logout"};
     static final String[] OPTIONSLOGIN = {"Login", "Exit"};
