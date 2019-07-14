@@ -1,7 +1,5 @@
 package org.academiadecodigo.codezillas.user;
 
-    //TODO: Taxi implementation will be hardcoded at first but it can still be thought of as a "fake user" of the app
-
 import org.academiadecodigo.codezillas.tripManager.Location;
 
 public class Driver {
@@ -13,7 +11,6 @@ public class Driver {
 
     public Driver(Location location){
         this.location = location;
-        //this.id = id;
     }
 
     public void setLocation(Location location){

@@ -3,6 +3,8 @@ package org.academiadecodigo.codezillas.menu;
 import org.academiadecodigo.codezillas.ConsoleColors.Colors;
 
 public class MenuAssets {
+    public static final int MIN_PASSENGERS = 1;
+    public static final int MAX_PASSENGERS =4;
 
     public static final String WELCOME = Colors.CYAN + "WELCOME TO CABME" + Colors.RESET;
     public static final String PROFILE = Colors.CYAN + "WELCOME TO YOUR PROFILE" + Colors.RESET;
@@ -23,6 +25,7 @@ public class MenuAssets {
     public static final String DRIVER_COMING = Colors.GREEN + "############# DRIVER ON ITS WAY #############" + Colors.RESET;
     public static final String DRIVER_ARRIVED = Colors.GREEN + "############# DRIVER ARRIVED #############" + Colors.RESET;
     public static final String TRIP_OVER = Colors.YELLOW + "############# YOU HAVE REACHED YOUR DESTINATION #############" + Colors.RESET + "\n";
+    public static final String DRIVER_MESSAGE = "Thank you, come again!";
     public static final String ARROW = "   ---------------------->   ";
 
     public static final String LINE = "-----------------------------";

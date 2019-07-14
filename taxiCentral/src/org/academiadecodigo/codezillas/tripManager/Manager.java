@@ -5,18 +5,21 @@ import org.academiadecodigo.codezillas.menu.MenuAssets;
 import org.academiadecodigo.codezillas.user.Client;
 import org.academiadecodigo.codezillas.user.Driver;
 import org.academiadecodigo.codezillas.user.DriverFactory;
+
 import java.io.PrintStream;
 
 public class Manager {
+
     private static Driver[] drivers;
 
     public Manager(int taxiAmount) {
         drivers = addDriver(taxiAmount);
     }
 
-    public static Driver[] getDrivers(){
-        return  drivers;
+    public static Driver[] getDrivers() {
+        return drivers;
     }
+
     public static synchronized void assignDriver(Client client, PrintStream printStream, int passengers) {
         try {
             boolean driverAssigned = false;
@@ -37,11 +40,10 @@ public class Manager {
             if (!driverAssigned) {
                 printStream.println(MenuAssets.NO_DRIVERS);
                 try {
-                    Thread.sleep(4000);
+                    Thread.sleep(2000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
-
             } else {
                 printStream.println(MenuAssets.DRIVER_COMING);
                 try {
@@ -53,32 +55,21 @@ public class Manager {
                     Thread.sleep(3000);
                     printStream.println(MenuAssets.TRIP_OVER);
                     printStream.println(Colors.PURPLE + "Your trip was: " + getCost(passengers, client) + " €" + Colors.RESET);
-                    printStream.println("Thank you come again!");
+                    printStream.println(MenuAssets.DRIVER_MESSAGE);
                     drivers[currentDriver].setLocation(client.getDestination());
                     drivers[currentDriver].setAvailability(true);
                     client.cabFare(getCost(passengers, client));
-                    Thread.sleep(4000);
+                    Thread.sleep(2500);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             }
         } catch (NullPointerException ex) {
-            System.out.println(client.getName() + " has left the server.");
+            ex.printStackTrace();
         }
     }
 
-    public static void showDrivers() {
-        /*Map<String, Integer> driversLocation = new HashMap<>();
-        for (int i = 0; i < Location.values().length; i++) {
-            driversLocation.put(Location.values()[i].toString(), 0);
-        }
-        for (int i = 0; i < drivers.length; i++) {
-            if (drivers[i].isAvailable()){
-                drivers[i].getLocation();
-            }
-        }
-        System.out.println("\n");*/
-    }
+    public static void showDrivers() {}
 
     public static double getCost(int passengers, Client client) {
         return CostCalculator.calculateCost(passengers, client.getLocation(), client.getDestination());

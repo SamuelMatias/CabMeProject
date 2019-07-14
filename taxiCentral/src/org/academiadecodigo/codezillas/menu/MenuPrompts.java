@@ -7,6 +7,7 @@ import org.academiadecodigo.bootcamp.scanners.precisiondouble.DoubleInputScanner
 import org.academiadecodigo.bootcamp.scanners.string.StringInputScanner;
 import org.academiadecodigo.codezillas.ConsoleColors.Colors;
 import org.academiadecodigo.codezillas.tripManager.Location;
+
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.NoSuchElementException;
@@ -35,7 +36,6 @@ public class MenuPrompts {
         } catch (NoSuchElementException e) {
             printStream.close();
         }
-
         return 0;
     }
 
@@ -49,26 +49,21 @@ public class MenuPrompts {
             scanner.setMessage(MenuAssets.NAME);
             name = prompt.getUserInput(scanner);
             return name;
-        }catch(NoSuchElementException e){
+        } catch (NoSuchElementException e) {
             printStream.close();
         }
-
         return "";
     }
 
     public int passengerNumber() {
         try {
-
             printStream.println(MenuAssets.LINE);
-            IntegerRangeInputScanner inputScanner = new IntegerRangeInputScanner(1, 4);
+            IntegerRangeInputScanner inputScanner = new IntegerRangeInputScanner(MenuAssets.MIN_PASSENGERS, MenuAssets.MAX_PASSENGERS);
             inputScanner.setMessage(MenuAssets.PASSENGERS);
             return prompt.getUserInput(inputScanner);
-        } catch (NoSuchElementException e) {
-            printStream.close();
-        }catch (NullPointerException e){
+        } catch (NullPointerException e) {
             printStream.close();
         }
-
         return 0;
     }
 
@@ -77,16 +72,12 @@ public class MenuPrompts {
             clearConsole();
             printStream.println(MenuAssets.LINE);
             printStream.println(MenuAssets.PROFILE + " " + Colors.GREEN + name.toUpperCase() + Colors.RESET);
-
             MenuInputScanner scanner = new MenuInputScanner(MenuAssets.OPTIONS_PROFILE);
             scanner.setMessage(MenuAssets.CHOOSE_OPTION);
             return prompt.getUserInput(scanner);
-        } catch (NoSuchElementException e) {
-            printStream.close();
-        }catch (NullPointerException e){
+        } catch (NullPointerException e) {
             printStream.close();
         }
-
         return 0;
     }
 
@@ -102,7 +93,6 @@ public class MenuPrompts {
         } catch (NoSuchElementException e) {
             printStream.close();
         }
-
         return 0;
     }
 
@@ -115,7 +105,6 @@ public class MenuPrompts {
         } catch (NoSuchElementException e) {
             printStream.close();
         }
-
         return null;
     }
 

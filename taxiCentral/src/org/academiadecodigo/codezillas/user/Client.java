@@ -10,7 +10,7 @@ public class Client {
     private Location location;
     private Location destination;
 
-    public Client(int id, String name, Location location, Location destination, int wallet ){
+    public Client(int id, String name, Location location, Location destination, int wallet) {
         this.id = id;
         this.name = name;
         this.location = location;
@@ -18,23 +18,23 @@ public class Client {
         this.wallet = wallet;
     }
 
-    public void deposit(double cash){
+    public void deposit(double cash) {
         wallet += cash;
     }
 
-    public double getWallet(){
+    public double getWallet() {
         return wallet;
     }
 
-    public void cabFare(double cash){
+    public void cabFare(double cash) {
         wallet -= cash;
     }
 
-    public Location getLocation(){
+    public Location getLocation() {
         return location;
     }
 
-    public Location getDestination(){
+    public Location getDestination() {
         return destination;
     }
 

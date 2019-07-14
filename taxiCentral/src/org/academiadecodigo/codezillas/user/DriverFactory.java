@@ -34,7 +34,6 @@ public class DriverFactory {
         if (probability < 100) {
             return Location.STA_BARBARA;
         }
-
         return null;
     }
 }

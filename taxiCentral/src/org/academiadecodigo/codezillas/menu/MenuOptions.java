@@ -4,6 +4,7 @@ import org.academiadecodigo.codezillas.ConsoleColors.Colors;
 import org.academiadecodigo.codezillas.tripManager.Manager;
 import org.academiadecodigo.codezillas.user.Client;
 import org.academiadecodigo.codezillas.user.Driver;
+
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.net.Socket;
@@ -11,10 +12,10 @@ import java.net.Socket;
 public class MenuOptions {
     private int clientMenuInput;
     private Client client;
-    PrintStream printStream;
-    InputStream inputStream;
-    MenuPrompts menuPrompts;
-    Socket clientSocket;
+    private PrintStream printStream;
+    private InputStream inputStream;
+    private MenuPrompts menuPrompts;
+    private Socket clientSocket;
 
     public MenuOptions(int clientMenuInput, Client client, PrintStream printStream, InputStream inputStream, Socket clientSocket) {
         this.clientMenuInput = clientMenuInput;
@@ -44,6 +45,7 @@ public class MenuOptions {
     }
 
     public void requestDriver() {
+        printStream.println(MenuAssets.LINE);
         int angra = 0;
         int lajes = 0;
         int sta_barbara = 0;
@@ -71,7 +73,6 @@ public class MenuOptions {
                     quatro_ribeiras++;
                     break;
             }
-
         }
 
         printStream.println("DRIVERS AVAILABLE: " +
@@ -87,18 +88,18 @@ public class MenuOptions {
         int passengers = menuPrompts.passengerNumber();
         client.setLocation(menuPrompts.askLocation(MenuAssets.SELECT_LOCATION));
         client.setDestination(menuPrompts.askLocation(MenuAssets.SELECT_DESTINATION));
-        if (client.getWallet() < Manager.getCost(passengers,client)){
+        if (client.getWallet() < Manager.getCost(passengers, client)) {
             printStream.println("\n");
             printStream.println(MenuAssets.NOT_ENOUGH_MONEY);
             return;
         }
-        Manager.assignDriver(client,printStream, passengers);
+        Manager.assignDriver(client, printStream, passengers);
     }
 
-    public void getWallet(){
+    public void getWallet() {
         printStream.println(Colors.GREEN + "You have " + client.getWallet() + " €" + Colors.RESET);
         try {
-            Thread.sleep(4000);
+            Thread.sleep(2500);
         } catch (InterruptedException e) {
             e.printStackTrace();
         }
@@ -116,5 +117,4 @@ public class MenuOptions {
             e.printStackTrace();
         }
     }
-
 }

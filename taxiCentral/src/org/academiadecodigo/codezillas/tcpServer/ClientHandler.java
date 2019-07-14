@@ -5,8 +5,8 @@ import java.io.*;
 import java.net.Socket;
 
 public class ClientHandler implements Runnable{
-    PrintStream printStream;
-    Socket clientSocket;
+    private PrintStream printStream;
+    private Socket clientSocket;
 
     public ClientHandler(Socket clientSocket){
         this.clientSocket = clientSocket;
