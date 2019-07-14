@@ -24,7 +24,7 @@ public class Manager {
 
     }
 
-    public static synchronized void assignDriver(Client client, PrintStream printStream) {
+    public static synchronized void assignDriver(Client client, PrintStream printStream, int passengers) {
 
         boolean driverAssigned = false;
         int currentDriver = 0;
@@ -47,11 +47,13 @@ public class Manager {
         } else {
             printStream.println("############# DRIVER ON ITS WAY #############");
             try {
+                Thread.sleep(1000);
+                printStream.println("############# DRIVER ARRIVED #############");
                 Thread.sleep(3000);
                 printStream.println("############# YOU HAVE REACHED YOUR DESTINATION #############");
                 drivers[currentDriver].setLocation(client.getDestination());
                 drivers[currentDriver].setAvailability(true);
-                client.cabFare(getCost(1,client));
+                client.cabFare(getCost(passengers,client));
                 // TODO: 2019-07-13 magic numbers passengers; 
             } catch (InterruptedException e) {
                 e.printStackTrace();

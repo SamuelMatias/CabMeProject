@@ -44,7 +44,7 @@ public class MenuOptions {
     public void askDriver(){
         client.setLocation(menuPrompts.askLocation("current location"));
         client.setDestination(menuPrompts.askLocation("destination"));
-        Manager.assignDriver(client,printStream);
+        Manager.assignDriver(client,printStream, menuPrompts.passengersNumber());
     }
 
     public void getWallet(){
