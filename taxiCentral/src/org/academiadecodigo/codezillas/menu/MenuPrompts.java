@@ -1,7 +1,5 @@
 package org.academiadecodigo.codezillas.menu;
 
-
-
 //Symbolic "login" menu and "Request taxi" menus
 
 import org.academiadecodigo.bootcamp.Prompt;
@@ -14,7 +12,6 @@ import org.academiadecodigo.codezillas.tripManager.Location;
 import java.io.InputStream;
 import java.io.PrintStream;
 import java.util.NoSuchElementException;
-
 
 public class MenuPrompts {
 
@@ -31,12 +28,11 @@ public class MenuPrompts {
 
     public int login() {
         try {
+            clearConsole();
             printStream.println(MenuAssets.LINE);
             printStream.println(MenuAssets.WELCOME);
-
-            MenuInputScanner scanner = new MenuInputScanner(MenuAssets.OPTIONSLOGIN);
-            scanner.setMessage("Choose an option");
-            printStream.println(" ");
+            MenuInputScanner scanner = new MenuInputScanner(MenuAssets.OPTIONS_LOGIN);
+            scanner.setMessage(MenuAssets.CHOOSE_OPTION);
             return prompt.getUserInput(scanner);
         } catch (NoSuchElementException e) {
             printStream.close();
@@ -48,9 +44,11 @@ public class MenuPrompts {
 
     public String clientName() {
         try {
+            clearConsole();
             printStream.println(MenuAssets.LINE);
+            printStream.println(MenuAssets.INSERT_USERNAME);
             StringInputScanner scanner = new StringInputScanner();
-            scanner.setMessage("Name: ");
+            scanner.setMessage(MenuAssets.NAME);
             name = prompt.getUserInput(scanner);
             return name;
         }catch(NoSuchElementException e){
@@ -62,9 +60,10 @@ public class MenuPrompts {
 
     public int passengerNumber() {
         try {
+            clearConsole();
             printStream.println(MenuAssets.LINE);
             IntegerRangeInputScanner inputScanner = new IntegerRangeInputScanner(1, 4);
-            inputScanner.setMessage(Colors.CYAN + "Passengers number: " + Colors.RESET);
+            inputScanner.setMessage(MenuAssets.PASSENGERS);
             return prompt.getUserInput(inputScanner);
         } catch (NoSuchElementException e) {
             printStream.close();
@@ -75,13 +74,12 @@ public class MenuPrompts {
 
     public int clientMenu() {
         try {
-            printStream.println(" ");
+            clearConsole();
             printStream.println(MenuAssets.LINE);
-            printStream.println(MenuAssets.PROFILE + " " + Colors.GREEN + name.toUpperCase() + Colors.RESET   );
+            printStream.println(MenuAssets.PROFILE + " " + Colors.GREEN + name.toUpperCase() + Colors.RESET);
 
-            MenuInputScanner scanner = new MenuInputScanner(MenuAssets.OPTIONSPROFILE);
-            scanner.setMessage(Colors.CYAN + "Choose an option" + Colors.RESET);
-            printStream.println(" ");
+            MenuInputScanner scanner = new MenuInputScanner(MenuAssets.OPTIONS_PROFILE);
+            scanner.setMessage(MenuAssets.CHOOSE_OPTION);
             return prompt.getUserInput(scanner);
         } catch (NoSuchElementException e) {
             printStream.close();
@@ -91,7 +89,7 @@ public class MenuPrompts {
 
     public double amountToDeposit() {
         try {
-            printStream.println(" ");
+            clearConsole();
             printStream.println(MenuAssets.LINE);
             printStream.println(MenuAssets.AMOUNT);
 
@@ -107,16 +105,22 @@ public class MenuPrompts {
 
     public Location askLocation(String option) {
         try {
-            printStream.println(" ");
+            clearConsole();
             printStream.println(MenuAssets.LINE);
             MenuInputScanner scanner = new MenuInputScanner(MenuAssets.LOCATIONS);
-            scanner.setMessage(Colors.CYAN + "Choose your " + option + Colors.RESET);
+            scanner.setMessage(option);
             return Location.values()[prompt.getUserInput(scanner) - 1];
         } catch (NoSuchElementException e) {
             printStream.close();
         }
 
         return null;
+
+    }
+
+    public void clearConsole() {
+
+        printStream.println("\033[H\033[2J");
 
     }
 }

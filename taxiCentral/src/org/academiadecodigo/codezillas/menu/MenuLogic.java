@@ -20,30 +20,26 @@ public class MenuLogic {
         this.inputStream = inputStream;
         this.printStream = printStream;
         menuPrompts = new MenuPrompts(inputStream, printStream);
-
     }
 
     public void clientLogin(Socket clientSocket) {
 
         if (menuPrompts.login() == 1) {
-            client = new Client(1,menuPrompts.clientName(), Location.ANGRA,Location.LAJES);
+            client = new Client(1, menuPrompts.clientName(), Location.ANGRA, Location.LAJES);
 
             int answer;
             while ((answer = menuPrompts.clientMenu()) > 0 && answer < 5){
-                MenuOptions menuOptions = new MenuOptions(answer, client, printStream, inputStream,clientSocket);
+                MenuOptions menuOptions = new MenuOptions(answer, client, printStream, inputStream, clientSocket);
                 menuOptions.chooseOption();
             }
 
         } else {
             try {
-                System.out.println(clientSocket.getInetAddress() + " has left the server.");
+                System.out.println(clientSocket.getInetAddress() + MenuAssets.LEFT_SERVER);
                 clientSocket.close();
             } catch (IOException e) {
                 e.printStackTrace();
             }
         }
-
     }
-
-
 }
