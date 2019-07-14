@@ -29,13 +29,19 @@ public class MenuPrompts {
     }
 
     public int login() {
-        printStream.println(MenuAssets.LINE);
-        printStream.println(MenuAssets.WELCOME);
+        try {
+            printStream.println(MenuAssets.LINE);
+            printStream.println(MenuAssets.WELCOME);
 
-        MenuInputScanner scanner = new MenuInputScanner(MenuAssets.OPTIONSLOGIN);
-        scanner.setMessage("Choose an option");
-        printStream.println(" ");
-        return prompt.getUserInput(scanner);
+            MenuInputScanner scanner = new MenuInputScanner(MenuAssets.OPTIONSLOGIN);
+            scanner.setMessage("Choose an option");
+            printStream.println(" ");
+            return prompt.getUserInput(scanner);
+        } catch (NoSuchElementException e) {
+            printStream.close();
+        }
+
+        return 0;
 
     }
 
@@ -56,23 +62,33 @@ public class MenuPrompts {
     }
 
     public double amountToDeposit() {
-        printStream.println(" ");
-        printStream.println(MenuAssets.LINE);
-        printStream.println(MenuAssets.AMOUNT);
+        try {
+            printStream.println(" ");
+            printStream.println(MenuAssets.LINE);
+            printStream.println(MenuAssets.AMOUNT);
 
-        DoubleInputScanner scanner = new DoubleInputScanner();
+            DoubleInputScanner scanner = new DoubleInputScanner();
 
-        return prompt.getUserInput(scanner);
+            return prompt.getUserInput(scanner);
+        } catch (NoSuchElementException e) {
+            printStream.close();
+        }
 
+        return 0;
     }
 
     public Location askLocation(String option) {
+        try {
+            printStream.println(" ");
+            printStream.println(MenuAssets.LINE);
+            MenuInputScanner scanner = new MenuInputScanner(MenuAssets.LOCATIONS);
+            scanner.setMessage("Choose your " + option);
+            return Location.values()[prompt.getUserInput(scanner) - 1];
+        } catch (NoSuchElementException e) {
+            printStream.close();
+        }
 
-        printStream.println(" ");
-        printStream.println(MenuAssets.LINE);
-        MenuInputScanner scanner = new MenuInputScanner(MenuAssets.LOCATIONS);
-        scanner.setMessage("Choose your " + option);
-        return Location.values()[prompt.getUserInput(scanner) - 1];
+        return null;
 
     }
 
