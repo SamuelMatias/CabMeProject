@@ -28,6 +28,7 @@ public class MenuLogic {
 
         if (menuPrompts.login() == 1) {
             client = new Client(1, "Miguel", Location.ANGRA,Location.LAJES);
+            menuPrompts.clientName();
 
             int answer;
             while ((answer = menuPrompts.clientMenu()) != 4){

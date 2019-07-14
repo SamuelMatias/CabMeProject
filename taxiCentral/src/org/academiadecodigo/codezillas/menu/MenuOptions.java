@@ -1,6 +1,5 @@
 package org.academiadecodigo.codezillas.menu;
 
-import org.academiadecodigo.codezillas.tripManager.Location;
 import org.academiadecodigo.codezillas.tripManager.Manager;
 import org.academiadecodigo.codezillas.user.Client;
 
@@ -27,7 +26,7 @@ public class MenuOptions {
         switch (clientMenuInput) {
             case 1:
                 Manager.showDrivers();
-                askDriver();
+                requestDriver();
                 break;
             case 2:
                 getWallet();
@@ -41,10 +40,11 @@ public class MenuOptions {
         }
     }
 
-    public void askDriver(){
+    public void requestDriver(){
+        int passengers = menuPrompts.passengerNumber();
         client.setLocation(menuPrompts.askLocation("current location"));
         client.setDestination(menuPrompts.askLocation("destination"));
-        Manager.assignDriver(client,printStream, menuPrompts.passengersNumber());
+        Manager.assignDriver(client,printStream, passengers);
     }
 
     public void getWallet(){

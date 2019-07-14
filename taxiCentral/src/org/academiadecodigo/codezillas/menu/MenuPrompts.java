@@ -23,6 +23,7 @@ public class MenuPrompts {
     private InputStream inputStream;
     private PrintStream printStream;
     private Prompt prompt;
+    private String name;
 
     public MenuPrompts(InputStream inputStream, PrintStream printStream) {
         this.inputStream = inputStream;
@@ -45,7 +46,8 @@ public class MenuPrompts {
         printStream.println(MenuAssets.LINE);
         StringInputScanner scanner = new StringInputScanner();
         scanner.setMessage("Name: ");
-        return prompt.getUserInput(scanner);
+        name = prompt.getUserInput(scanner);
+        return name;
 
     }
 
@@ -60,7 +62,7 @@ public class MenuPrompts {
     public int clientMenu() {
         printStream.println(" ");
         printStream.println(MenuAssets.LINE);
-        printStream.println(MenuAssets.PROFILE + " " + clientName());
+        printStream.println(MenuAssets.PROFILE + " " + name);
 
         MenuInputScanner scanner = new MenuInputScanner(MenuAssets.OPTIONSPROFILE);
         scanner.setMessage("Choose an option");
