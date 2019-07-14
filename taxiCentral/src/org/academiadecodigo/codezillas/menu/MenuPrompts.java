@@ -7,18 +7,22 @@ package org.academiadecodigo.codezillas.menu;
 //Symbolic "login" menu and "Request taxi" menus
 
 import org.academiadecodigo.bootcamp.Prompt;
+import org.academiadecodigo.bootcamp.scanners.integer.IntegerInputScanner;
+import org.academiadecodigo.bootcamp.scanners.integer.IntegerRangeInputScanner;
 import org.academiadecodigo.bootcamp.scanners.menu.MenuInputScanner;
 import org.academiadecodigo.bootcamp.scanners.precisiondouble.DoubleInputScanner;
+import org.academiadecodigo.bootcamp.scanners.string.StringInputScanner;
 import org.academiadecodigo.codezillas.tripManager.Location;
+
 import java.io.InputStream;
 import java.io.PrintStream;
 
 
 public class MenuPrompts {
 
-    InputStream inputStream;
-    PrintStream printStream;
-    Prompt prompt;
+    private InputStream inputStream;
+    private PrintStream printStream;
+    private Prompt prompt;
 
     public MenuPrompts(InputStream inputStream, PrintStream printStream) {
         this.inputStream = inputStream;
@@ -37,10 +41,26 @@ public class MenuPrompts {
 
     }
 
+    public String clientName() {
+        printStream.println(MenuAssets.LINE);
+        StringInputScanner scanner = new StringInputScanner();
+        scanner.setMessage("Name: ");
+        return prompt.getUserInput(scanner);
+
+    }
+
+    public int passengerNumber() {
+        printStream.println(MenuAssets.LINE);
+        IntegerRangeInputScanner inputScanner = new IntegerRangeInputScanner(1, 4);
+        inputScanner.setMessage("Passengers number: ");
+        return prompt.getUserInput(inputScanner);
+
+    }
+
     public int clientMenu() {
         printStream.println(" ");
         printStream.println(MenuAssets.LINE);
-        printStream.println(MenuAssets.PROFILE);
+        printStream.println(MenuAssets.PROFILE + " " + clientName());
 
         MenuInputScanner scanner = new MenuInputScanner(MenuAssets.OPTIONSPROFILE);
         scanner.setMessage("Choose an option");
@@ -48,7 +68,7 @@ public class MenuPrompts {
         return prompt.getUserInput(scanner);
     }
 
-    public double amountToDeposit(){
+    public double amountToDeposit() {
         printStream.println(" ");
         printStream.println(MenuAssets.LINE);
         printStream.println(MenuAssets.AMOUNT);
@@ -59,13 +79,13 @@ public class MenuPrompts {
 
     }
 
-    public Location askLocation(String option){
+    public Location askLocation(String option) {
 
         printStream.println(" ");
         printStream.println(MenuAssets.LINE);
         MenuInputScanner scanner = new MenuInputScanner(MenuAssets.LOCATIONS);
         scanner.setMessage("Choose your " + option);
-        return Location.values()[prompt.getUserInput(scanner)-1];
+        return Location.values()[prompt.getUserInput(scanner) - 1];
 
     }
 
