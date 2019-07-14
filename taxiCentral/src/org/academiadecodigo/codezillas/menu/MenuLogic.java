@@ -6,8 +6,10 @@ package org.academiadecodigo.codezillas.menu;
 import org.academiadecodigo.codezillas.tripManager.Location;
 import org.academiadecodigo.codezillas.user.Client;
 
+import java.io.IOException;
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.net.Socket;
 
 public class MenuLogic {
 
@@ -24,19 +26,24 @@ public class MenuLogic {
 
     }
 
-    public void clientLogin() {
+    public void clientLogin(Socket clientSocket) {
 
         if (menuPrompts.login() == 1) {
             client = new Client(1, "Miguel", Location.ANGRA,Location.LAJES);
 
             int answer;
-            while ((answer = menuPrompts.clientMenu()) != 4){
-                MenuOptions menuOptions = new MenuOptions(answer, client, printStream, inputStream);
+            while ((answer = menuPrompts.clientMenu()) > 0 && answer < 5){
+                MenuOptions menuOptions = new MenuOptions(answer, client, printStream, inputStream,clientSocket);
                 menuOptions.chooseOption();
             }
 
         } else {
-            System.exit(1);
+            try {
+                System.out.println(clientSocket.getInetAddress() + " has left the server.");
+                clientSocket.close();
+            } catch (IOException e) {
+                e.printStackTrace();
+            }
         }
 
     }

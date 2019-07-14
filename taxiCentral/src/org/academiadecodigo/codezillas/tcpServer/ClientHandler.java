@@ -5,13 +5,9 @@ import org.academiadecodigo.codezillas.menu.MenuLogic;
 import java.io.*;
 import java.net.Socket;
 
-    //TODO: Handle client thread logic
-    //Not sure if the name of this class is ideal, up for discussion
-
 public class ClientHandler implements Runnable{
 
     PrintStream printStream;
-
     Socket clientSocket;
 
     public ClientHandler(Socket clientSocket){
@@ -36,8 +32,7 @@ public class ClientHandler implements Runnable{
 
             if(clientSocket.isBound()) {
                 MenuLogic menu = new MenuLogic(clientSocket.getInputStream(),printStream);
-                menu.clientLogin();
-
+                menu.clientLogin(clientSocket);
             }
         }catch(Exception ex){
             ex.printStackTrace();

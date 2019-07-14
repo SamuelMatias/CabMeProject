@@ -10,8 +10,10 @@ import org.academiadecodigo.bootcamp.Prompt;
 import org.academiadecodigo.bootcamp.scanners.menu.MenuInputScanner;
 import org.academiadecodigo.bootcamp.scanners.precisiondouble.DoubleInputScanner;
 import org.academiadecodigo.codezillas.tripManager.Location;
+
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.util.NoSuchElementException;
 
 
 public class MenuPrompts {
@@ -38,17 +40,22 @@ public class MenuPrompts {
     }
 
     public int clientMenu() {
-        printStream.println(" ");
-        printStream.println(MenuAssets.LINE);
-        printStream.println(MenuAssets.PROFILE);
+        try {
+            printStream.println(" ");
+            printStream.println(MenuAssets.LINE);
+            printStream.println(MenuAssets.PROFILE);
 
-        MenuInputScanner scanner = new MenuInputScanner(MenuAssets.OPTIONSPROFILE);
-        scanner.setMessage("Choose an option");
-        printStream.println(" ");
-        return prompt.getUserInput(scanner);
+            MenuInputScanner scanner = new MenuInputScanner(MenuAssets.OPTIONSPROFILE);
+            scanner.setMessage("Choose an option");
+            printStream.println(" ");
+            return prompt.getUserInput(scanner);
+        } catch (NoSuchElementException e) {
+            printStream.close();
+        }
+        return 0;
     }
 
-    public double amountToDeposit(){
+    public double amountToDeposit() {
         printStream.println(" ");
         printStream.println(MenuAssets.LINE);
         printStream.println(MenuAssets.AMOUNT);
@@ -59,13 +66,13 @@ public class MenuPrompts {
 
     }
 
-    public Location askLocation(String option){
+    public Location askLocation(String option) {
 
         printStream.println(" ");
         printStream.println(MenuAssets.LINE);
         MenuInputScanner scanner = new MenuInputScanner(MenuAssets.LOCATIONS);
         scanner.setMessage("Choose your " + option);
-        return Location.values()[prompt.getUserInput(scanner)-1];
+        return Location.values()[prompt.getUserInput(scanner) - 1];
 
     }
 

@@ -1,11 +1,10 @@
 package org.academiadecodigo.codezillas.menu;
 
-import org.academiadecodigo.codezillas.tripManager.Location;
 import org.academiadecodigo.codezillas.tripManager.Manager;
 import org.academiadecodigo.codezillas.user.Client;
-
 import java.io.InputStream;
 import java.io.PrintStream;
+import java.net.Socket;
 
 public class MenuOptions {
     private int clientMenuInput;
@@ -13,13 +12,15 @@ public class MenuOptions {
     PrintStream printStream;
     InputStream inputStream;
     MenuPrompts menuPrompts;
+    Socket clientSocket;
 
-    public MenuOptions(int clientMenuInput, Client client, PrintStream printStream, InputStream inputStream) {
+    public MenuOptions(int clientMenuInput, Client client, PrintStream printStream, InputStream inputStream, Socket clientSocket) {
         this.clientMenuInput = clientMenuInput;
         this.client = client;
         this.printStream = printStream;
         this.inputStream = inputStream;
         menuPrompts = new MenuPrompts(inputStream,printStream);
+        this.clientSocket = clientSocket;
     }
 
     public void chooseOption() {
@@ -56,7 +57,12 @@ public class MenuOptions {
     }
 
     public void logout(){
-        // TODO client socket close
+        try {
+            System.out.println(clientSocket.getInetAddress() + " has left");
+            clientSocket.close();
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
     }
 
 }

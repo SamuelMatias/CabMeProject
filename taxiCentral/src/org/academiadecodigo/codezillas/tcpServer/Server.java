@@ -1,16 +1,12 @@
 package org.academiadecodigo.codezillas.tcpServer;
 
-import org.academiadecodigo.codezillas.menu.MenuAssets;
 import org.academiadecodigo.codezillas.tripManager.Manager;
-
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.concurrent.ExecutorService;
 import java.util.concurrent.Executors;
 
-//TODO: Implement server logic with support for multithreading
-//TODO Create Thread Handler class separately from this one (I would name it ClientHandler but we can pick a name together)
 
 public class Server {
 
