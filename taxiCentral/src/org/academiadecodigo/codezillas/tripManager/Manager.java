@@ -14,48 +14,48 @@ import java.io.PrintWriter;
 
 public class Manager {
     private static Driver[] drivers;
-    private double cost = 8;
-    private PrintWriter out;
-    private BufferedReader in;
-    private Client client;
 
     public Manager(int taxiAmount) {
         drivers = addDriver(taxiAmount);
 
     }
 
-    public static synchronized void assignDriver(Client client, PrintStream printStream) {
+    public static synchronized void assignDriver(Client client, PrintStream printStream, int passengers) {
+        try {
+            boolean driverAssigned = false;
+            int currentDriver = 0;
+            for (int i = 0; i < drivers.length; i++) {
 
-        boolean driverAssigned = false;
-        int currentDriver = 0;
-        for (int i = 0; i < drivers.length; i++) {
-
-            if (client.getLocation().getX() == drivers[i].getLocation().getX()
-                    && client.getLocation().getY() == drivers[i].getLocation().getY()) {
-                if (drivers[i].isAvailable()) {
-                    drivers[i].setAvailability(false);
-                    driverAssigned = true;
-                    currentDriver = i;
-                    break;
+                if (client.getLocation().getX() == drivers[i].getLocation().getX()
+                        && client.getLocation().getY() == drivers[i].getLocation().getY()) {
+                    if (drivers[i].isAvailable()) {
+                        drivers[i].setAvailability(false);
+                        driverAssigned = true;
+                        currentDriver = i;
+                        break;
+                    }
                 }
             }
-        }
 
-        if (!driverAssigned) {
-            printStream.println("############# NO DRIVER AVAILABLE #############");
+            if (!driverAssigned) {
+                printStream.println("############# NO DRIVER AVAILABLE #############");
 
-        } else {
-            printStream.println("############# DRIVER ON ITS WAY #############");
-            try {
-                Thread.sleep(3000);
-                printStream.println("############# YOU HAVE REACHED YOUR DESTINATION #############");
-                drivers[currentDriver].setLocation(client.getDestination());
-                drivers[currentDriver].setAvailability(true);
-                client.cabFare(getCost(1,client));
-                // TODO: 2019-07-13 magic numbers passengers; 
-            } catch (InterruptedException e) {
-                e.printStackTrace();
+            } else {
+                printStream.println("############# DRIVER ON ITS WAY #############");
+                try {
+                    Thread.sleep(1000);
+                    printStream.println("############# DRIVER ARRIVED #############");
+                    Thread.sleep(3000);
+                    printStream.println("############# YOU HAVE REACHED YOUR DESTINATION #############");
+                    drivers[currentDriver].setLocation(client.getDestination());
+                    drivers[currentDriver].setAvailability(true);
+                    client.cabFare(getCost(passengers, client));
+                } catch (InterruptedException e) {
+                    e.printStackTrace();
+                }
             }
+        } catch (NullPointerException ex) {
+            System.out.println(client.getName() + " has left the server.");
         }
     }
 

@@ -1,8 +1,5 @@
 package org.academiadecodigo.codezillas.menu;
 
-//TODO: This class should have static methods that handle the necessary logic for the MenuPrompts methods to work
-//TODO This class can be made an inner class of MenuPrompts or even deleted if it is not necessary
-
 import org.academiadecodigo.codezillas.tripManager.Location;
 import org.academiadecodigo.codezillas.user.Client;
 
@@ -29,7 +26,7 @@ public class MenuLogic {
     public void clientLogin(Socket clientSocket) {
 
         if (menuPrompts.login() == 1) {
-            client = new Client(1, "Miguel", Location.ANGRA,Location.LAJES);
+            client = new Client(1,menuPrompts.clientName(), Location.ANGRA,Location.LAJES);
 
             int answer;
             while ((answer = menuPrompts.clientMenu()) > 0 && answer < 5){

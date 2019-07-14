@@ -27,8 +27,7 @@ public class MenuOptions {
 
         switch (clientMenuInput) {
             case 1:
-                Manager.showDrivers();
-                askDriver();
+                requestDriver();
                 break;
             case 2:
                 getWallet();
@@ -42,10 +41,12 @@ public class MenuOptions {
         }
     }
 
-    public void askDriver(){
+    public void requestDriver(){
+        System.out.println(client.getName() + " has requested a driver");
+        int passengers = menuPrompts.passengerNumber();
         client.setLocation(menuPrompts.askLocation("current location"));
         client.setDestination(menuPrompts.askLocation("destination"));
-        Manager.assignDriver(client,printStream);
+        Manager.assignDriver(client,printStream, passengers);
     }
 
     public void getWallet(){
@@ -58,7 +59,7 @@ public class MenuOptions {
 
     public void logout(){
         try {
-            System.out.println(clientSocket.getInetAddress() + " has left");
+            System.out.println(client.getName() + " has left the server");
             clientSocket.close();
         } catch (Exception e) {
             e.printStackTrace();

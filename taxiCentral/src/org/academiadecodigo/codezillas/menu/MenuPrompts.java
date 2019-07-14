@@ -7,8 +7,10 @@ package org.academiadecodigo.codezillas.menu;
 //Symbolic "login" menu and "Request taxi" menus
 
 import org.academiadecodigo.bootcamp.Prompt;
+import org.academiadecodigo.bootcamp.scanners.integer.IntegerRangeInputScanner;
 import org.academiadecodigo.bootcamp.scanners.menu.MenuInputScanner;
 import org.academiadecodigo.bootcamp.scanners.precisiondouble.DoubleInputScanner;
+import org.academiadecodigo.bootcamp.scanners.string.StringInputScanner;
 import org.academiadecodigo.codezillas.tripManager.Location;
 
 import java.io.InputStream;
@@ -18,9 +20,10 @@ import java.util.NoSuchElementException;
 
 public class MenuPrompts {
 
-    InputStream inputStream;
-    PrintStream printStream;
-    Prompt prompt;
+    private InputStream inputStream;
+    private PrintStream printStream;
+    private Prompt prompt;
+    private String name;
 
     public MenuPrompts(InputStream inputStream, PrintStream printStream) {
         this.inputStream = inputStream;
@@ -45,11 +48,38 @@ public class MenuPrompts {
 
     }
 
+    public String clientName() {
+        try {
+            printStream.println(MenuAssets.LINE);
+            StringInputScanner scanner = new StringInputScanner();
+            scanner.setMessage("Name: ");
+            name = prompt.getUserInput(scanner);
+            return name;
+        }catch(NoSuchElementException e){
+            printStream.close();
+        }
+
+        return "";
+    }
+
+    public int passengerNumber() {
+        try {
+            printStream.println(MenuAssets.LINE);
+            IntegerRangeInputScanner inputScanner = new IntegerRangeInputScanner(1, 4);
+            inputScanner.setMessage("Passengers number: ");
+            return prompt.getUserInput(inputScanner);
+        } catch (NoSuchElementException e) {
+            printStream.close();
+        }
+        return 0;
+
+    }
+
     public int clientMenu() {
         try {
             printStream.println(" ");
             printStream.println(MenuAssets.LINE);
-            printStream.println(MenuAssets.PROFILE);
+            printStream.println(MenuAssets.PROFILE + " " + name);
 
             MenuInputScanner scanner = new MenuInputScanner(MenuAssets.OPTIONSPROFILE);
             scanner.setMessage("Choose an option");
