@@ -30,7 +30,7 @@ public class MenuLogic {
         if (menuPrompts.login() == 1) {
             if(counter < 4){
                 wallet = 100;
-                printStream.println(Colors.PURPLE + "CONGRATULATION YOU FUCKING NERD YOU WERE THE FIRST THREE TO GET THE PRIZE " + Colors.RESET);
+                printStream.println(MenuAssets.WINNER);
                 try {
                     Thread.sleep(3000);
                 } catch (InterruptedException e) {

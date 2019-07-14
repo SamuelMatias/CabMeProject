@@ -35,7 +35,7 @@ public class Manager {
             }
 
             if (!driverAssigned) {
-                printStream.println(Colors.RED + "############# NO DRIVER AVAILABLE #############" + Colors.RESET);
+                printStream.println(MenuAssets.NO_DRIVERS);
                 try {
                     Thread.sleep(4000);
                 } catch (InterruptedException e) {
@@ -43,15 +43,15 @@ public class Manager {
                 }
 
             } else {
-                printStream.println(Colors.GREEN + "############# DRIVER ON ITS WAY #############" + Colors.RESET);
+                printStream.println(MenuAssets.DRIVER_COMING);
                 try {
                     Thread.sleep(1000);
-                    printStream.println(Colors.GREEN + "############# DRIVER ARRIVED #############" + Colors.RESET);
+                    printStream.println(MenuAssets.DRIVER_ARRIVED);
                     printStream.println("\n");
-                    printStream.println(client.getLocation() + "   ---------------------->   " + client.getDestination());
+                    printStream.println("  " + client.getLocation() + MenuAssets.ARROW + client.getDestination());
                     printStream.println(Colors.YELLOW + MenuAssets.TAXI + Colors.RESET);
                     Thread.sleep(3000);
-                    printStream.println(Colors.YELLOW + "############# YOU HAVE REACHED YOUR DESTINATION #############" + Colors.RESET + "\n");
+                    printStream.println(MenuAssets.TRIP_OVER);
                     printStream.println(Colors.PURPLE + "Your trip was: " + getCost(passengers, client) + " €" + Colors.RESET);
                     printStream.println("Thank you come again!");
                     drivers[currentDriver].setLocation(client.getDestination());

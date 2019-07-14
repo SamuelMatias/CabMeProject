@@ -37,13 +37,13 @@ public class MenuPrompts {
         }
 
         return 0;
-
     }
 
     public String clientName() {
         try {
             clearConsole();
             printStream.println(MenuAssets.LINE);
+            printStream.println(MenuAssets.NAME_SELECTION);
             printStream.println(MenuAssets.INSERT_USERNAME);
             StringInputScanner scanner = new StringInputScanner();
             scanner.setMessage(MenuAssets.NAME);
@@ -68,8 +68,8 @@ public class MenuPrompts {
         }catch (NullPointerException e){
             printStream.close();
         }
-        return 0;
 
+        return 0;
     }
 
     public int clientMenu() {
@@ -86,6 +86,7 @@ public class MenuPrompts {
         }catch (NullPointerException e){
             printStream.close();
         }
+
         return 0;
     }
 
@@ -119,7 +120,6 @@ public class MenuPrompts {
     }
 
     public void clearConsole() {
-
         printStream.println("\033[H\033[2J");
     }
 }
