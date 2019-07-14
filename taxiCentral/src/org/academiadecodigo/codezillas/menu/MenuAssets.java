@@ -8,7 +8,9 @@ public class MenuAssets {
 
     public static final String WELCOME = Colors.CYAN + "WELCOME TO CABME" + Colors.RESET;
     public static final String PROFILE = Colors.CYAN + "WELCOME TO YOUR PROFILE" + Colors.RESET;
-    public static final String AMOUNT = Colors.CYAN + "HOW MUCH YOU WANT?" + Colors.CYAN;
+    public static final String ADD_FUNDS = Colors.CYAN + "ADD FUNDS\n" + Colors.CYAN;
+    public static final String INSERT_AMOUNT = Colors.CYAN + "Insert the amount you want to add\n" + Colors.RESET;
+    public static final String AMOUNT = Colors.CYAN + "Amount: " + Colors.RESET;
     public static final String CHOOSE_OPTION = Colors.CYAN + "Choose an option" + Colors.RESET;
     public static final String INSERT_USERNAME = Colors.CYAN + "Insert your username\n" + Colors.RESET;
 
@@ -38,7 +40,7 @@ public class MenuAssets {
             "              .----' `-----.\n" +
             "             //^^^^;;^^^^^^`\\\n" +
             "     _______//_____||_____()_\\________\n" +
-            "    /       :      : ___    CABME      `\\\n" +
+            "    /       :      : ___    CabMe       `\\\n" +
             "   |>   ____;      ;  |/\\><|   ____   _<)\n" +
             "  {____/    \\_________________/    \\____}\n" +
             "       \\ '' /                 \\ '' /\n" +

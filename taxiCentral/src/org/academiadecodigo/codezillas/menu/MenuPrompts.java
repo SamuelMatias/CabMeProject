@@ -1,9 +1,9 @@
 package org.academiadecodigo.codezillas.menu;
 
 import org.academiadecodigo.bootcamp.Prompt;
+import org.academiadecodigo.bootcamp.scanners.integer.IntegerInputScanner;
 import org.academiadecodigo.bootcamp.scanners.integer.IntegerRangeInputScanner;
 import org.academiadecodigo.bootcamp.scanners.menu.MenuInputScanner;
-import org.academiadecodigo.bootcamp.scanners.precisiondouble.DoubleInputScanner;
 import org.academiadecodigo.bootcamp.scanners.string.StringInputScanner;
 import org.academiadecodigo.codezillas.ConsoleColors.Colors;
 import org.academiadecodigo.codezillas.tripManager.Location;
@@ -63,6 +63,8 @@ public class MenuPrompts {
             return prompt.getUserInput(inputScanner);
         } catch (NullPointerException e) {
             printStream.close();
+        } catch (NoSuchElementException e){
+            printStream.close();
         }
         return 0;
     }
@@ -75,7 +77,9 @@ public class MenuPrompts {
             MenuInputScanner scanner = new MenuInputScanner(MenuAssets.OPTIONS_PROFILE);
             scanner.setMessage(MenuAssets.CHOOSE_OPTION);
             return prompt.getUserInput(scanner);
-        } catch (NullPointerException e) {
+        } catch (NullPointerException e){
+            printStream.close();
+        } catch (NoSuchElementException e){
             printStream.close();
         }
         return 0;
@@ -85,10 +89,10 @@ public class MenuPrompts {
         try {
             clearConsole();
             printStream.println(MenuAssets.LINE);
-            printStream.println(MenuAssets.AMOUNT);
-
-            DoubleInputScanner scanner = new DoubleInputScanner();
-
+            printStream.println(MenuAssets.ADD_FUNDS);
+            printStream.println(MenuAssets.INSERT_AMOUNT);
+            IntegerInputScanner scanner = new IntegerInputScanner();
+            scanner.setMessage(MenuAssets.AMOUNT);
             return prompt.getUserInput(scanner);
         } catch (NoSuchElementException e) {
             printStream.close();
