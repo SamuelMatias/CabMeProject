@@ -17,7 +17,7 @@ public class Server {
     public Server(int port){
         this.port = port;
         executor = Executors.newCachedThreadPool();
-        new Manager(5);
+        new Manager(15);
     }
 
     public void initialize(){

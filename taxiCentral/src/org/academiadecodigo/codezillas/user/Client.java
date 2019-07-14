@@ -10,16 +10,16 @@ public class Client {
     private Location location;
     private Location destination;
 
-    public Client(int id, String name, Location location, Location destination ){
+    public Client(int id, String name, Location location, Location destination, int wallet ){
         this.id = id;
         this.name = name;
         this.location = location;
         this.destination = destination;
+        this.wallet = wallet;
     }
 
     public void deposit(double cash){
         wallet += cash;
-
     }
 
     public double getWallet(){

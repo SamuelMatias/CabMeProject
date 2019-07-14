@@ -1,7 +1,6 @@
 package org.academiadecodigo.codezillas.tcpServer;
 
 import org.academiadecodigo.codezillas.menu.MenuLogic;
-
 import java.io.*;
 import java.net.Socket;
 
@@ -38,5 +37,4 @@ public class ClientHandler implements Runnable{
             ex.printStackTrace();
         }
     }
-
 }

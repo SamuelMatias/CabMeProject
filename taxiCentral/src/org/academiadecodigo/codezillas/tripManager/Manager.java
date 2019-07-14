@@ -6,8 +6,6 @@ import org.academiadecodigo.codezillas.user.Client;
 import org.academiadecodigo.codezillas.user.Driver;
 import org.academiadecodigo.codezillas.user.DriverFactory;
 import java.io.PrintStream;
-import java.util.HashMap;
-import java.util.Map;
 
 public class Manager {
     private static Driver[] drivers;
@@ -16,6 +14,9 @@ public class Manager {
         drivers = addDriver(taxiAmount);
     }
 
+    public static Driver[] getDrivers(){
+        return  drivers;
+    }
     public static synchronized void assignDriver(Client client, PrintStream printStream, int passengers) {
         try {
             boolean driverAssigned = false;
@@ -47,11 +48,12 @@ public class Manager {
                     Thread.sleep(1000);
                     printStream.println(Colors.GREEN + "############# DRIVER ARRIVED #############" + Colors.RESET);
                     printStream.println("\n");
-                    printStream.println(client.getLocation() + " =========> " + client.getDestination());
+                    printStream.println(client.getLocation() + "   ---------------------->   " + client.getDestination());
                     printStream.println(Colors.YELLOW + MenuAssets.TAXI + Colors.RESET);
                     Thread.sleep(3000);
-                    printStream.println(Colors.YELLOW + "############# YOU HAVE REACHED YOUR DESTINATION #############" + Colors.RESET);
+                    printStream.println(Colors.YELLOW + "############# YOU HAVE REACHED YOUR DESTINATION #############" + Colors.RESET + "\n");
                     printStream.println(Colors.PURPLE + "Your trip was: " + getCost(passengers, client) + " €" + Colors.RESET);
+                    printStream.println("Thank you come again!");
                     drivers[currentDriver].setLocation(client.getDestination());
                     drivers[currentDriver].setAvailability(true);
                     client.cabFare(getCost(passengers, client));

@@ -1,7 +1,5 @@
 package org.academiadecodigo.codezillas.menu;
 
-//Symbolic "login" menu and "Request taxi" menus
-
 import org.academiadecodigo.bootcamp.Prompt;
 import org.academiadecodigo.bootcamp.scanners.integer.IntegerRangeInputScanner;
 import org.academiadecodigo.bootcamp.scanners.menu.MenuInputScanner;
@@ -60,12 +58,14 @@ public class MenuPrompts {
 
     public int passengerNumber() {
         try {
-            clearConsole();
+
             printStream.println(MenuAssets.LINE);
             IntegerRangeInputScanner inputScanner = new IntegerRangeInputScanner(1, 4);
             inputScanner.setMessage(MenuAssets.PASSENGERS);
             return prompt.getUserInput(inputScanner);
         } catch (NoSuchElementException e) {
+            printStream.close();
+        }catch (NullPointerException e){
             printStream.close();
         }
         return 0;
@@ -82,6 +82,8 @@ public class MenuPrompts {
             scanner.setMessage(MenuAssets.CHOOSE_OPTION);
             return prompt.getUserInput(scanner);
         } catch (NoSuchElementException e) {
+            printStream.close();
+        }catch (NullPointerException e){
             printStream.close();
         }
         return 0;
@@ -105,7 +107,6 @@ public class MenuPrompts {
 
     public Location askLocation(String option) {
         try {
-            clearConsole();
             printStream.println(MenuAssets.LINE);
             MenuInputScanner scanner = new MenuInputScanner(MenuAssets.LOCATIONS);
             scanner.setMessage(option);
@@ -115,12 +116,10 @@ public class MenuPrompts {
         }
 
         return null;
-
     }
 
     public void clearConsole() {
 
         printStream.println("\033[H\033[2J");
-
     }
 }
