@@ -1,8 +1,6 @@
 package org.academiadecodigo.codezillas.menu;
 
-//TODO: Implement Prompt-view menus and inputs here
-//TODO (associated logic can be put in adjacent class MenuLogic if the methods become too large)
-//TODO This class will need to "know" the main logic handler class in order to interact
+
 
 //Symbolic "login" menu and "Request taxi" menus
 
@@ -79,7 +77,7 @@ public class MenuPrompts {
         try {
             printStream.println(" ");
             printStream.println(MenuAssets.LINE);
-            printStream.println(MenuAssets.PROFILE + " " + name);
+            printStream.println(MenuAssets.PROFILE + " " + Colors.GREEN + name.toUpperCase() + Colors.RESET   );
 
             MenuInputScanner scanner = new MenuInputScanner(MenuAssets.OPTIONSPROFILE);
             scanner.setMessage(Colors.CYAN + "Choose an option" + Colors.RESET);

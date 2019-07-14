@@ -1,7 +1,6 @@
 package org.academiadecodigo.codezillas.tcpServer;
 
 
-//Class used to test server
 public class ServerMain {
 
     public static void main(String[] args) {

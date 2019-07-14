@@ -1,7 +1,6 @@
 package org.academiadecodigo.codezillas.menu;
 
 import org.academiadecodigo.codezillas.ConsoleColors.Colors;
-import org.academiadecodigo.codezillas.tripManager.Location;
 import org.academiadecodigo.codezillas.tripManager.Manager;
 import org.academiadecodigo.codezillas.user.Client;
 import java.io.InputStream;
@@ -48,6 +47,11 @@ public class MenuOptions {
         int passengers = menuPrompts.passengerNumber();
         client.setLocation(menuPrompts.askLocation("current location"));
         client.setDestination(menuPrompts.askLocation("destination"));
+        if (client.getWallet() < Manager.getCost(passengers,client)){
+            printStream.println("\n");
+            printStream.println(Colors.RED + "YOU DONT HAVE ENOUGH MONEY, SELECT OPTION 3! " + Colors.RESET);
+            return;
+        }
         Manager.assignDriver(client,printStream, passengers);
     }
 
