@@ -1,6 +1,7 @@
 package org.academiadecodigo.codezillas.tripManager;
 
 import org.academiadecodigo.codezillas.ConsoleColors.Colors;
+import org.academiadecodigo.codezillas.menu.MenuAssets;
 import org.academiadecodigo.codezillas.user.Client;
 import org.academiadecodigo.codezillas.user.Driver;
 import org.academiadecodigo.codezillas.user.DriverFactory;
@@ -41,8 +42,11 @@ public class Manager {
                 try {
                     Thread.sleep(1000);
                     printStream.println(Colors.GREEN + "############# DRIVER ARRIVED #############" + Colors.RESET);
+                    printStream.println("\n");
+                    printStream.println(Colors.YELLOW + MenuAssets.TAXI + Colors.RESET);
                     Thread.sleep(3000);
-                    printStream.println(Colors.GREEN + "############# YOU HAVE REACHED YOUR DESTINATION #############" + Colors.RESET);
+                    printStream.println(Colors.YELLOW + "############# YOU HAVE REACHED YOUR DESTINATION #############" + Colors.RESET);
+                    printStream.println(Colors.PURPLE + "Your trip was: " + getCost(passengers, client) + " €" + Colors.RESET);
                     drivers[currentDriver].setLocation(client.getDestination());
                     drivers[currentDriver].setAvailability(true);
                     client.cabFare(getCost(passengers, client));

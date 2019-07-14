@@ -5,7 +5,7 @@ import org.academiadecodigo.codezillas.tripManager.Location;
 public class Client {
 
     private int id;
-    private double wallet = 100.00;
+    private double wallet = 20.00;
     private String name;
     private Location location;
     private Location destination;
