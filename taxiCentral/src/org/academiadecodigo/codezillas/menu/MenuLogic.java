@@ -27,7 +27,6 @@ public class MenuLogic {
         int wallet = 25;
         if (menuPrompts.login() == 1) {
 
-
             client = new Client(counter, menuPrompts.clientName(), Location.ANGRA, Location.LAJES, wallet);
 
             int answer;

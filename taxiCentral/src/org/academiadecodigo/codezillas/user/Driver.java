@@ -8,26 +8,24 @@ public class Driver {
     private Location location;
     private boolean availability = true;
 
-    public Driver(Location location){
+    public Driver(Location location) {
         this.location = location;
     }
 
-    public void setLocation(Location location){
+    public void setLocation(Location location) {
         this.location = location;
     }
 
-    public Location getLocation(){
+    public Location getLocation() {
         return location;
     }
 
 
-    public boolean isAvailable(){
+    public boolean isAvailable() {
         return availability;
     }
 
-    public void setAvailability(boolean set){
+    public void setAvailability(boolean set) {
         availability = set;
     }
-
-
 }

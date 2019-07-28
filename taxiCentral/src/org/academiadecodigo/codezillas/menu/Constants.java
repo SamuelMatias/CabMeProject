@@ -4,7 +4,7 @@ import org.academiadecodigo.codezillas.ConsoleColors.Colors;
 
 public class Constants {
     public static final int MIN_PASSENGERS = 1;
-    public static final int MAX_PASSENGERS =4;
+    public static final int MAX_PASSENGERS = 4;
 
     public static final String CLEAR_SCREEN = "\033[H\033[2J";
     public static final String TOP_LINE = "------------------------------------";
@@ -37,22 +37,22 @@ public class Constants {
     public static final String DRIVER_ARRIVED = Colors.GREEN + "#############  DRIVER ARRIVED   #############" + Colors.RESET;
     public static final String TRIP_OVER = Colors.YELLOW + "###### YOU HAVE REACHED YOUR DESTINATION ######" + Colors.RESET + "\n";
     public static final String NO_DRIVERS = Colors.RED + "#### NO DRIVERS AVAILABLE AT YOUR LOCATION ####" + Colors.RESET;
-    public static final String ARROW = "   ---------------------->   ";
+    public static final String ARROW = "  ------------------->  ";
 
     public static final String LEFT_SERVER = " has left the server.";
     public static final String SERVER_CREATED = "Server created";
     public static final String WAITING_FOR_CLIENT = "Waiting for a client connection";
     public static final String CLIENT_FOUND = "Client accepted";
 
-    public static final String TAXI= Colors.YELLOW + "" +
+    public static final String TAXI = Colors.YELLOW + "" +
             "                   [\\\n" +
             "              .----' `-----.\n" +
             "             //^^^^;;^^^^^^`\\\n" +
             "     _______//_____||_____()_\\________\n" +
-            "    /       :      : ___    CabMe      `\\\n" +
+            "    /       :      : ___    CabMe     `\\\n" +
             "   |>   ____;      ;  |/\\><|   ____   _<)\n" +
             "  {____/    \\_________________/    \\____}\n" +
             "       \\ '' /                 \\ '' /\n" +
-            "        '--'                   '--'\r"  + Colors.RESET;
+            "        '--'                   '--'\r" + Colors.RESET;
 }
 

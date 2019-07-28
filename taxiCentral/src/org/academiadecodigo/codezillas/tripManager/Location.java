@@ -8,7 +8,7 @@ public enum Location {
     S_SEBASTIAO(1,2),
     QUATRO_RIBEIRAS(0,1);
 
-    Location(int x, int y){
+    Location(int x, int y) {
         this.x = x;
         this.y = y;
     }
@@ -16,11 +16,11 @@ public enum Location {
     private int x;
     private int y;
 
-    public int getX(){
+    public int getX() {
         return x;
     }
 
-    public int getY(){
+    public int getY() {
         return y;
     }
 

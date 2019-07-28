@@ -7,14 +7,8 @@ public class CostCalculator {
     }
 
     private static int calculateDistance(Location origin, Location destination) {
-        //try {
-            int distX = Math.abs(destination.getX() - origin.getX());
-            int distY = Math.abs(destination.getY() - origin.getY());
-            return (distX + distY);
-
-        //} catch (NullPointerException e) {
-        //    e.getStackTrace();
-        //}
-        //return 99;
+        int distX = Math.abs(destination.getX() - origin.getX());
+        int distY = Math.abs(destination.getY() - origin.getY());
+        return (distX + distY);
     }
 }

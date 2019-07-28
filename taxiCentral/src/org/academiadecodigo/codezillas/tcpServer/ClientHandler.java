@@ -1,14 +1,15 @@
 package org.academiadecodigo.codezillas.tcpServer;
 
 import org.academiadecodigo.codezillas.menu.MenuLogic;
+
 import java.io.*;
 import java.net.Socket;
 
-public class ClientHandler implements Runnable{
+public class ClientHandler implements Runnable {
     private PrintStream printStream;
     private Socket clientSocket;
 
-    public ClientHandler(Socket clientSocket){
+    public ClientHandler(Socket clientSocket) {
         this.clientSocket = clientSocket;
     }
 
@@ -19,21 +20,21 @@ public class ClientHandler implements Runnable{
         respond();
     }
 
-    public void setupStreams(){
+    public void setupStreams() {
         try {
-            printStream = new PrintStream(clientSocket.getOutputStream(),true);
+            printStream = new PrintStream(clientSocket.getOutputStream(), true);
         } catch (IOException e) {
             e.printStackTrace();
         }
     }
 
-    public void respond(){
-        try{
-            if(clientSocket.isBound()) {
-                MenuLogic menu = new MenuLogic(clientSocket.getInputStream(),printStream);
+    public void respond() {
+        try {
+            if (clientSocket.isBound()) {
+                MenuLogic menu = new MenuLogic(clientSocket.getInputStream(), printStream);
                 menu.clientLogin(clientSocket);
             }
-        } catch(Exception ex) {
+        } catch (Exception ex) {
             ex.printStackTrace();
         }
     }

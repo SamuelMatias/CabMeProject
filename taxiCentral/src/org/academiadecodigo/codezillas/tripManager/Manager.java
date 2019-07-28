@@ -26,8 +26,7 @@ public class Manager {
             int currentDriver = 0;
             for (int i = 0; i < drivers.length; i++) {
 
-                if (client.getLocation().getX() == drivers[i].getLocation().getX()
-                        && client.getLocation().getY() == drivers[i].getLocation().getY()) {
+                if (client.getLocation().equals(drivers[i].getLocation())) {
                     if (drivers[i].isAvailable()) {
                         drivers[i].setAvailability(false);
                         driverAssigned = true;
@@ -50,15 +49,16 @@ public class Manager {
                 try {
                     Thread.sleep(1000);
                     printStream.println(Constants.DRIVER_ARRIVED);
+                    Thread.sleep(1000);
                     printStream.println("\n");
-                    printStream.println("  " + client.getLocation() + Constants.ARROW + client.getDestination());
+                    printStream.println(" " + client.getLocation() + Constants.ARROW + client.getDestination());
                     printStream.println(Constants.TAXI);
                     Thread.sleep(3000);
                     printStream.println(Constants.TRIP_OVER);
                     printStream.println(Colors.PURPLE + "Your trip was: " + getCost(passengers, client) + " €" + Colors.RESET);
+                    client.cabFare(getCost(passengers, client));
                     drivers[currentDriver].setLocation(client.getDestination());
                     drivers[currentDriver].setAvailability(true);
-                    client.cabFare(getCost(passengers, client));
                     Thread.sleep(4500);
                 } catch (InterruptedException e) {
                     e.printStackTrace();

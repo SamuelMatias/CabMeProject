@@ -15,13 +15,13 @@ public class Server {
     private Socket clientSocket;
     private ExecutorService executor;
 
-    public Server(int port){
+    public Server(int port) {
         this.port = port;
         executor = Executors.newCachedThreadPool();
         new Manager(15);
     }
 
-    public void initialize(){
+    public void initialize() {
         try {
             System.out.println(Constants.SERVER_CREATED);
             serverSocket = new ServerSocket(port);
@@ -31,17 +31,17 @@ public class Server {
         }
     }
 
-    public void listen(){
-        try{
+    public void listen() {
+        try {
             clientSocket = serverSocket.accept();
-            executor.submit(new ClientHandler(clientSocket){
+            executor.submit(new ClientHandler(clientSocket) {
                 @Override
                 public void run() {
                     super.run();
                 }
             });
             System.out.println(Constants.CLIENT_FOUND);
-        }catch(IOException e){
+        } catch (IOException e) {
             e.printStackTrace();
         }
     }

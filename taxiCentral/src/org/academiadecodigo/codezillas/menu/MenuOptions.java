@@ -56,10 +56,8 @@ public class MenuOptions {
     public void requestDriver() {
         System.out.println(client.getName() + " has requested a driver");
         int passengers = menuPrompts.passengerNumber();
-
-
         showDrivers();
-        //printStream.println("\n");
+
         try {
             client.setLocation(menuPrompts.askLocation(Constants.SELECT_LOCATION));
             printStream.println(Constants.CLEAR_SCREEN + Constants.TOP_LINE);
@@ -82,13 +80,13 @@ public class MenuOptions {
         }
     }
 
-    public void showDrivers(){
+    public void showDrivers() {
         int angra = 0;
         int lajes = 0;
         int sta_barbara = 0;
+        int raminho = 0;
         int s_sebastiao = 0;
         int quatro_ribeiras = 0;
-        int raminho = 0;
         for (Driver driver : Manager.getDrivers()) {
             switch (driver.getLocation()) {
                 case ANGRA:
@@ -137,14 +135,14 @@ public class MenuOptions {
             printStream.println(Constants.DEPOSIT_SUCCESSFUL + amount + "€");
             try {
                 Thread.sleep(1500);
-            } catch (InterruptedException e){
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         } else {
             printStream.println(Constants.INVALID_AMOUNT);
             try {
                 Thread.sleep(1500);
-            } catch (InterruptedException e){
+            } catch (InterruptedException e) {
                 e.printStackTrace();
             }
         }

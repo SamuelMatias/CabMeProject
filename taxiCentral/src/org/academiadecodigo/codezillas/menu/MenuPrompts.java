@@ -64,7 +64,7 @@ public class MenuPrompts {
             return prompt.getUserInput(inputScanner);
         } catch (NullPointerException e) {
             printStream.close();
-        } catch (NoSuchElementException e){
+        } catch (NoSuchElementException e) {
             printStream.close();
         }
         return 0;
@@ -78,9 +78,9 @@ public class MenuPrompts {
             MenuInputScanner scanner = new MenuInputScanner(Constants.MAIN_MENU_OPTIONS);
             scanner.setMessage(Constants.CHOOSE_OPTION);
             return prompt.getUserInput(scanner);
-        } catch (NullPointerException e){
+        } catch (NullPointerException e) {
             printStream.close();
-        } catch (NoSuchElementException e){
+        } catch (NoSuchElementException e) {
             printStream.close();
         }
         return 0;

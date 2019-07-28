@@ -20,11 +20,11 @@ public class DriverFactory {
         }
 
         if (probability < 45) {
-            return Location.RAMINHO;
+            return Location.STA_BARBARA;
         }
 
         if (probability < 60) {
-            return Location.QUATRO_RIBEIRAS;
+            return Location.RAMINHO;
         }
 
         if (probability < 75) {
@@ -32,9 +32,8 @@ public class DriverFactory {
         }
 
         if (probability < 100) {
-            return Location.STA_BARBARA;
+            return Location.QUATRO_RIBEIRAS;
         }
         return null;
     }
 }
-
