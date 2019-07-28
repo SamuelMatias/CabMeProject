@@ -27,11 +27,11 @@ public class MenuPrompts {
 
     public int login() {
         try {
-            clearConsole();
-            printStream.println(MenuAssets.LINE);
-            printStream.println(MenuAssets.WELCOME);
-            MenuInputScanner scanner = new MenuInputScanner(MenuAssets.OPTIONS_LOGIN);
-            scanner.setMessage(MenuAssets.CHOOSE_OPTION);
+            printStream.println(Constants.CLEAR_SCREEN);
+            printStream.println(Constants.TOP_LINE);
+            printStream.println(Constants.WELCOME);
+            MenuInputScanner scanner = new MenuInputScanner(Constants.OPTIONS_LOGIN);
+            scanner.setMessage(Constants.CHOOSE_OPTION);
             return prompt.getUserInput(scanner);
         } catch (NoSuchElementException e) {
             printStream.close();
@@ -41,12 +41,13 @@ public class MenuPrompts {
 
     public String clientName() {
         try {
-            clearConsole();
-            printStream.println(MenuAssets.LINE);
-            printStream.println(MenuAssets.NAME_SELECTION);
-            printStream.println(MenuAssets.INSERT_USERNAME);
+            printStream.println(Constants.CLEAR_SCREEN);
+            printStream.println(Constants.TOP_LINE);
+            printStream.println(Constants.NAME_SELECTION);
+            printStream.println(Constants.INSERT_USERNAME);
             StringInputScanner scanner = new StringInputScanner();
-            scanner.setMessage(MenuAssets.NAME);
+            scanner.setMessage(Constants.NAME);
+            scanner.setError(Constants.INVALID_NAME);
             name = prompt.getUserInput(scanner);
             return name;
         } catch (NoSuchElementException e) {
@@ -57,9 +58,9 @@ public class MenuPrompts {
 
     public int passengerNumber() {
         try {
-            printStream.println(MenuAssets.LINE);
-            IntegerRangeInputScanner inputScanner = new IntegerRangeInputScanner(MenuAssets.MIN_PASSENGERS, MenuAssets.MAX_PASSENGERS);
-            inputScanner.setMessage(MenuAssets.PASSENGERS);
+            printStream.println(Constants.CLEAR_SCREEN + Constants.TOP_LINE);
+            IntegerRangeInputScanner inputScanner = new IntegerRangeInputScanner(Constants.MIN_PASSENGERS, Constants.MAX_PASSENGERS);
+            inputScanner.setMessage(Constants.PASSENGERS);
             return prompt.getUserInput(inputScanner);
         } catch (NullPointerException e) {
             printStream.close();
@@ -71,11 +72,11 @@ public class MenuPrompts {
 
     public int clientMenu() {
         try {
-            clearConsole();
-            printStream.println(MenuAssets.LINE);
-            printStream.println(MenuAssets.PROFILE + " " + Colors.GREEN + name.toUpperCase() + Colors.RESET);
-            MenuInputScanner scanner = new MenuInputScanner(MenuAssets.OPTIONS_PROFILE);
-            scanner.setMessage(MenuAssets.CHOOSE_OPTION);
+            printStream.println(Constants.CLEAR_SCREEN);
+            printStream.println(Constants.TOP_LINE);
+            printStream.println(Constants.PROFILE + " " + Colors.GREEN + name.toUpperCase() + Colors.RESET);
+            MenuInputScanner scanner = new MenuInputScanner(Constants.MAIN_MENU_OPTIONS);
+            scanner.setMessage(Constants.CHOOSE_OPTION);
             return prompt.getUserInput(scanner);
         } catch (NullPointerException e){
             printStream.close();
@@ -87,12 +88,13 @@ public class MenuPrompts {
 
     public double amountToDeposit() {
         try {
-            clearConsole();
-            printStream.println(MenuAssets.LINE);
-            printStream.println(MenuAssets.ADD_FUNDS);
-            printStream.println(MenuAssets.INSERT_AMOUNT);
+            printStream.println(Constants.CLEAR_SCREEN);
+            printStream.println(Constants.TOP_LINE);
+            printStream.println(Constants.ADD_FUNDS);
+            printStream.println(Constants.INSERT_AMOUNT);
             IntegerInputScanner scanner = new IntegerInputScanner();
-            scanner.setMessage(MenuAssets.AMOUNT);
+            scanner.setMessage(Constants.AMOUNT);
+            scanner.setError(Constants.INVALID_AMOUNT);
             return prompt.getUserInput(scanner);
         } catch (NoSuchElementException e) {
             printStream.close();
@@ -102,17 +104,13 @@ public class MenuPrompts {
 
     public Location askLocation(String option) {
         try {
-            printStream.println(MenuAssets.LINE);
-            MenuInputScanner scanner = new MenuInputScanner(MenuAssets.LOCATIONS);
+            printStream.println(Constants.TOP_LINE);
+            MenuInputScanner scanner = new MenuInputScanner(Constants.LOCATIONS);
             scanner.setMessage(option);
             return Location.values()[prompt.getUserInput(scanner) - 1];
         } catch (NoSuchElementException e) {
             printStream.close();
         }
         return null;
-    }
-
-    public void clearConsole() {
-        printStream.println("\033[H\033[2J");
     }
 }

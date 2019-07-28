@@ -1,12 +1,12 @@
 package org.academiadecodigo.codezillas.tripManager;
 
 public enum Location {
-    RAMINHO(0,0),
-    QUATRO_RIBEIRAS(0,1),
+    ANGRA(1,1),
     LAJES(0,2),
     STA_BARBARA(0,1),
-    ANGRA(1,1),
-    S_SEBASTIAO(1,2);
+    RAMINHO(0,0),
+    S_SEBASTIAO(1,2),
+    QUATRO_RIBEIRAS(0,1);
 
     Location(int x, int y){
         this.x = x;

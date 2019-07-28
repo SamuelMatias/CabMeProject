@@ -26,27 +26,20 @@ public class MenuLogic {
         counter++;
         int wallet = 25;
         if (menuPrompts.login() == 1) {
-            if (counter < 4) {
-                wallet = 100;
-                printStream.println(MenuAssets.WINNER);
-                try {
-                    Thread.sleep(1500);
-                } catch (InterruptedException e) {
-                    e.printStackTrace();
-                }
-            }
+
 
             client = new Client(counter, menuPrompts.clientName(), Location.ANGRA, Location.LAJES, wallet);
 
             int answer;
-            while ((answer = menuPrompts.clientMenu()) > 0 && answer < 5) {
+            while ((answer = menuPrompts.clientMenu()) > 0 && answer < 6) {
                 MenuOptions menuOptions = new MenuOptions(answer, client, printStream, inputStream, clientSocket);
                 menuOptions.chooseOption();
             }
 
         } else {
             try {
-                System.out.println(clientSocket.getInetAddress() + MenuAssets.LEFT_SERVER);
+                System.out.println(clientSocket.getInetAddress() + Constants.LEFT_SERVER);
+                printStream.println(Constants.EXIT_APP);
                 clientSocket.close();
             } catch (Exception ex) {
                 printStream.close();

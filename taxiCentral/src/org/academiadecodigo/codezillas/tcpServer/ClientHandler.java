@@ -33,7 +33,7 @@ public class ClientHandler implements Runnable{
                 MenuLogic menu = new MenuLogic(clientSocket.getInputStream(),printStream);
                 menu.clientLogin(clientSocket);
             }
-        }catch(Exception ex){
+        } catch(Exception ex) {
             ex.printStackTrace();
         }
     }

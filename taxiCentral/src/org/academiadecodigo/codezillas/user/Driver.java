@@ -6,7 +6,6 @@ public class Driver {
 
     private int id;
     private Location location;
-    private Location destination;
     private boolean availability = true;
 
     public Driver(Location location){
@@ -21,14 +20,6 @@ public class Driver {
         return location;
     }
 
-    public void setDestination(Location destination){
-        availability = false;
-        this.destination = destination;
-    }
-
-    public Location getDestination(){
-        return destination;
-    }
 
     public boolean isAvailable(){
         return availability;

@@ -1,6 +1,8 @@
 package org.academiadecodigo.codezillas.tcpServer;
 
+import org.academiadecodigo.codezillas.menu.Constants;
 import org.academiadecodigo.codezillas.tripManager.Manager;
+
 import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
@@ -21,9 +23,9 @@ public class Server {
 
     public void initialize(){
         try {
-            System.out.println(ServerMessages.SERVER_CREATED);
+            System.out.println(Constants.SERVER_CREATED);
             serverSocket = new ServerSocket(port);
-            System.out.println(ServerMessages.WAITING_FOR_CLIENT);
+            System.out.println(Constants.WAITING_FOR_CLIENT);
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -38,7 +40,7 @@ public class Server {
                     super.run();
                 }
             });
-            System.out.println(ServerMessages.CLIENT_FOUND);
+            System.out.println(Constants.CLIENT_FOUND);
         }catch(IOException e){
             e.printStackTrace();
         }

@@ -1,7 +1,7 @@
 package org.academiadecodigo.codezillas.tripManager;
 
 import org.academiadecodigo.codezillas.ConsoleColors.Colors;
-import org.academiadecodigo.codezillas.menu.MenuAssets;
+import org.academiadecodigo.codezillas.menu.Constants;
 import org.academiadecodigo.codezillas.user.Client;
 import org.academiadecodigo.codezillas.user.Driver;
 import org.academiadecodigo.codezillas.user.DriverFactory;
@@ -38,28 +38,28 @@ public class Manager {
             }
 
             if (!driverAssigned) {
-                printStream.println(MenuAssets.NO_DRIVERS);
+                printStream.println(Constants.NO_DRIVERS);
                 try {
                     Thread.sleep(2000);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
             } else {
-                printStream.println(MenuAssets.DRIVER_COMING);
+                printStream.println(Constants.CLEAR_SCREEN + Constants.TOP_LINE);
+                printStream.println(Constants.DRIVER_ON_THE_WAY);
                 try {
                     Thread.sleep(1000);
-                    printStream.println(MenuAssets.DRIVER_ARRIVED);
+                    printStream.println(Constants.DRIVER_ARRIVED);
                     printStream.println("\n");
-                    printStream.println("  " + client.getLocation() + MenuAssets.ARROW + client.getDestination());
-                    printStream.println(Colors.YELLOW + MenuAssets.TAXI + Colors.RESET);
+                    printStream.println("  " + client.getLocation() + Constants.ARROW + client.getDestination());
+                    printStream.println(Constants.TAXI);
                     Thread.sleep(3000);
-                    printStream.println(MenuAssets.TRIP_OVER);
+                    printStream.println(Constants.TRIP_OVER);
                     printStream.println(Colors.PURPLE + "Your trip was: " + getCost(passengers, client) + " €" + Colors.RESET);
-                    printStream.println(MenuAssets.DRIVER_MESSAGE);
                     drivers[currentDriver].setLocation(client.getDestination());
                     drivers[currentDriver].setAvailability(true);
                     client.cabFare(getCost(passengers, client));
-                    Thread.sleep(2500);
+                    Thread.sleep(4500);
                 } catch (InterruptedException e) {
                     e.printStackTrace();
                 }
@@ -68,8 +68,6 @@ public class Manager {
             ex.printStackTrace();
         }
     }
-
-    public static void showDrivers() {}
 
     public static double getCost(int passengers, Client client) {
         return CostCalculator.calculateCost(passengers, client.getLocation(), client.getDestination());
