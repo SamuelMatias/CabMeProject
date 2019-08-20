@@ -1,4 +1,4 @@
-# taxiCentralRepo
+# CabMe
 <h2>Text-based cab service app.</h2>
 
 <h4>Second team project, produced after 8 weeks of Java learning.</h4>
